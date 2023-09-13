@@ -158,3 +158,33 @@ for (let i = 0; i < navigationLinks.length; i++) {
   });
 }
 
+
+//dark-mode light mode
+
+// Get references to the elements
+const themeToggle = document.getElementById("theme-toggle");
+const body = document.body;
+
+// Check if user prefers dark mode
+if (window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches) {
+    body.classList.add("dark-mode");
+}
+
+// Toggle between dark and light mode
+themeToggle.addEventListener("click", () => {
+    body.classList.toggle("dark-mode");
+    // Store the user's preference in local storage or cookies
+    if (body.classList.contains("dark-mode")) {
+        localStorage.setItem("theme", "dark");
+    } else {
+        localStorage.setItem("theme", "light");
+    }
+});
+
+// Check user's preference on page load
+const userPreference = localStorage.getItem("theme");
+if (userPreference === "dark") {
+    body.classList.add("dark-mode");
+} else if (userPreference === "light") {
+    body.classList.remove("dark-mode");
+}
