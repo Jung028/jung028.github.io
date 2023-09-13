@@ -155,7 +155,19 @@ input, textarea {
 
 html { font-family: var(--ff-poppins); }
 
-body { background: var(--smoky-black); }
+/* body { background: var(--smoky-black); }*/
+
+/* Default light mode styles */
+body {
+  background-color: #ffffff;
+  color: #333333;
+}
+
+/* Dark mode styles */
+body.dark-mode {
+  background-color: #333333;
+  color: #ffffff;
+}
 
 
 
