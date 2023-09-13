@@ -147,14 +147,11 @@ input, textarea {
 }
 
 ::selection {
-  background: linear-gradient(135deg, cyan, deepskyblue);
+  background: var(--orange-yellow-crayola);
   color: var(--smoky-black);
 }
 
-:focus {
-  outline-color: cyan;
-}
-
+:focus { outline-color: var(--orange-yellow-crayola); }
 
 html { font-family: var(--ff-poppins); }
 
