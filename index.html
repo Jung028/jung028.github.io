@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Adam Lim</title>
 
-  <button id="theme-toggle">Toggle Dark Mode</button>
+  
   <!--
     - favicon
   -->
@@ -26,8 +26,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
 </head>
 
-<body>
-
+<body id="body">
   <!--
     - #MAIN
   -->
@@ -47,7 +46,7 @@
         </figure>
 
         <div class="info-content">
-          <h1 class="name" title="Richard hanrick">Adam Lim Han Jung</h1>
+          <h1 class="name" title="Richard hanrick">Adam Lim</h1>
 
           <p class="title">Software Engineer</p>
         </div>
@@ -128,16 +127,24 @@
 
         <ul class="social-list">
 
+          <!-- Github -->
           <li class="social-item">
             <a href="https://github.com/Jung028" class="social-link">
               <ion-icon name="logo-github"></ion-icon>
             </a>
           </li>
 
-
+          <!-- Resume -->
           <li class="social-item">
             <a href="https://drive.google.com/file/d/1M1om9IK6V78yl-VqUv8Mx87rjqbGgaYv/view?usp=sharing" class="social-link">
-              <ion-icon name="logo-news"></ion-icon>
+              <ion-icon name="document-text-outline"></ion-icon>
+            </a>
+          </li>
+
+          <!-- Blog -->
+          <li class="social-item">
+            <a href="https://dev.to/nswer" class="social-link">
+              <ion-icon name="newspaper-outline"></ion-icon>
             </a>
           </li>
 
@@ -185,6 +192,14 @@
             <button class="navbar-link" data-nav-link>Contact</button>
           </li>
 
+          <li class="navbar-item">
+            <button class="navbar-link" onclick="toggleDarkMode()">
+              <ion-icon name="moon-outline"></ion-icon> <!-- Moon icon for dark mode -->
+            </button>
+          </li>
+          
+          
+
         </ul>
 
       </nav>
@@ -200,11 +215,15 @@
       <article class="about  active" data-page="about">
 
         <header>
-          <h2 class="h2 article-title">About me</h2>
+          <h2 class="h2 article-title">About</h2>
         </header>
 
         <section class="about-text">
-          <p>
+
+            <img src="./assets/images/AdamLim.jpg" alt="Adam Lim" width="200">
+            <div class="separator"></div>
+
+            <p>
             I am a dedicated Computer Science student with a passion for problem-solving and innovation. From a young age, I was captivated by the ever-evolving world of technology, and this fascination has grown into a lifelong pursuit. With a solid foundation in programming languages like Python, Java, and C++, I thrive in the realm of coding, relishing the challenge of turning complex algorithms into elegant, functional solutions.
           </p>
 
@@ -302,12 +321,12 @@
 
 
         <!--
-          - testimonials
+          - Skills 
         -->
 
-        <section class="testimonials">
+        <section class="testimonials"> 
 
-          <h3 class="h3 testimonials-title">Testimonials</h3>
+          <h3 class="h3 testimonials-title">Skills</h3>
 
           <ul class="testimonials-list has-scrollbar">
 
@@ -452,12 +471,12 @@
 
         
       <!--
-        - Clients
+        - Languages
       -->        
 
         <section class="clients">
 
-          <h3 class="h3 clients-title">Clients</h3>
+          <h3 class="h3 clients-title">Languages</h3>
 
           <ul class="clients-list has-scrollbar">
 
@@ -986,13 +1005,7 @@
           <h2 class="h2 article-title">Contact</h2>
         </header>
 
-        <section class="mapbox" data-mapbox>
-          <figure>
-            <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d199666.5651251294!2d-121.58334177520186!3d38.56165006739519!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x809ac672b28397f9%3A0x921f6aaa74197fdb!2sSacramento%2C%20CA%2C%20USA!5e0!3m2!1sen!2sbd!4v1647608789441!5m2!1sen!2sbd"
-              width="400" height="300" loading="lazy"></iframe>
-          </figure>
-        </section>
+
 
         <section class="contact-form">
 

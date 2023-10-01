@@ -159,32 +159,21 @@ for (let i = 0; i < navigationLinks.length; i++) {
 }
 
 
-//dark-mode light mode
+// JavaScript function to toggle between light and dark modes
+function toggleDarkMode() {
+  const body = document.body;
+  body.classList.toggle('light-mode');
 
-// Get references to the elements
-const themeToggle = document.getElementById("theme-toggle");
-const body = document.body;
+  const iconSun = document.getElementById('iconSun');
+  const iconMoon = document.getElementById('iconMoon');
 
-// Check if user prefers dark mode
-if (window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches) {
-    body.classList.add("dark-mode");
-}
-
-// Toggle between dark and light mode
-themeToggle.addEventListener("click", () => {
-    body.classList.toggle("dark-mode");
-    // Store the user's preference in local storage or cookies
-    if (body.classList.contains("dark-mode")) {
-        localStorage.setItem("theme", "dark");
-    } else {
-        localStorage.setItem("theme", "light");
-    }
-});
-
-// Check user's preference on page load
-const userPreference = localStorage.getItem("theme");
-if (userPreference === "dark") {
-    body.classList.add("dark-mode");
-} else if (userPreference === "light") {
-    body.classList.remove("dark-mode");
+  if (body.classList.contains('light-mode')) {
+    // Light mode is active, switch to dark mode
+    iconSun.style.display = 'none';
+    iconMoon.style.display = 'inline-block';
+  } else {
+    // Dark mode is active, switch to light mode
+    iconSun.style.display = 'inline-block';
+    iconMoon.style.display = 'none';
+  }
 }
