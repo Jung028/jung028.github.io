@@ -333,10 +333,6 @@ article.active {
   z-index: -1;
 }
 
-.logo {
-  width: 100px !important; /* Adjust the width as needed */
-  height: 100px !important; /* Adjust the height as needed */
-}
 
 
 
@@ -803,6 +799,8 @@ main {
 }
 
 .clients-item img:hover { filter: grayscale(0); }
+
+
 
 
 
@@ -1284,12 +1282,18 @@ textarea.form-input::-webkit-resizer { display: none; }
 @media (min-width: 450px) {
 
   /**
-   * client
+   * client / languages 
    */
 
   .clients-item { min-width: calc(33.33% - 10px); }
 
 
+/* Media queries for different screen sizes */
+@media screen and (min-width: 768px) {
+  .clients-item img.logo {
+    max-width: 200px; /* Adjust the width for larger screens */
+  }
+}
 
   /**
    * #PORTFOLIO, BLOG 
