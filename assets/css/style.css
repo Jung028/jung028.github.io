@@ -1160,6 +1160,10 @@ main {
   line-height: 1.6;
 }
 
+.blog-posts-frame {
+
+}
+
 
 
 
@@ -1302,7 +1306,9 @@ textarea.form-input::-webkit-resizer { display: none; }
   .project-img,
   .blog-banner-box { height: auto; }
 
+
 }
+
 
 
 
@@ -1565,6 +1571,46 @@ textarea.form-input::-webkit-resizer { display: none; }
   .blog-content { padding: 25px; }
 
 
+
+  /**
+  The image stack o
+  */
+
+  .image-gallery {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  
+  .image-stack {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px; /* Adjust the gap between images */
+  }
+  
+  .image-stack img {
+    width: 300px; /* Adjust the width of individual images */
+    height: auto; /* Adjust the height of individual images */
+    cursor: pointer;
+    transition: transform 0.2s;
+  }
+  
+  .image-stack img:hover {
+    transform: scale(1.1); /* Add a zoom effect on hover */
+  }
+  
+  .image-viewer {
+    display: none;
+  }
+  
+  .image-viewer img {
+    max-width: 100%;
+    max-height: 80vh; /* Adjust the maximum height of the large image */
+  }
+  
+
+  
 
   /**
    * #CONTACT

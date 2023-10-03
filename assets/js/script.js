@@ -177,3 +177,21 @@ function toggleDarkMode() {
     iconMoon.style.display = 'none';
   }
 }
+
+
+
+// images stack interaction 
+
+const imageStack = document.querySelector(".image-stack");
+const largeImage = document.getElementById("large-image");
+
+imageStack.addEventListener("click", (event) => {
+  if (event.target.tagName === "IMG") {
+    largeImage.src = event.target.src;
+    largeImage.parentElement.style.display = "block";
+  }
+});
+
+largeImage.parentElement.addEventListener("click", () => {
+  largeImage.parentElement.style.display = "none";
+});
