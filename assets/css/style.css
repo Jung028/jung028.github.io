@@ -1160,9 +1160,7 @@ main {
   line-height: 1.6;
 }
 
-.blog-posts-frame {
 
-}
 
 
 
@@ -1575,7 +1573,6 @@ textarea.form-input::-webkit-resizer { display: none; }
   /**
   The image stack o
   */
-
   .image-gallery {
     display: flex;
     justify-content: center;
@@ -1589,8 +1586,14 @@ textarea.form-input::-webkit-resizer { display: none; }
     gap: 10px; /* Adjust the gap between images */
   }
   
+  @media (max-width: 576px) {
+    .image-stack {
+      flex-direction: column;
+    }
+  }
+  
   .image-stack img {
-    width: 300px; /* Adjust the width of individual images */
+    max-width: 100%; /* This will make the images scale to fit the width of the container, regardless of the screen size */
     height: auto; /* Adjust the height of individual images */
     cursor: pointer;
     transition: transform 0.2s;
@@ -1605,11 +1608,9 @@ textarea.form-input::-webkit-resizer { display: none; }
   }
   
   .image-viewer img {
-    max-width: 100%;
+    max-width: auto;
     max-height: 80vh; /* Adjust the maximum height of the large image */
   }
-  
-
   
 
   /**
