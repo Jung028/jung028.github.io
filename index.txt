@@ -1,5 +1,194 @@
 vCard - Personal Portfolio
 
+# To Run on Local Server  : http-server
+
+<to put back, put in between <ul>
+<li class="blog-post-item">
+
+            
+              
+                <div class="blog-content">
+
+                  <div class="blog-meta">
+                    <p class="blog-category">Robot Tempur Tag Team</p>
+
+                    <span class="dot"></span>
+
+                    <time datetime="2022-02-23">September 2023 - November 2023</time>
+                  </div>
+
+                  <h3 class="h3 blog-item-title">Tyre Robot</h3>
+
+                  <p class="blog-text">
+                    
+                  </p>
+
+                  <div class="image-gallery">
+                    <div class="image-stack">
+
+                      <!-- Video element -->
+                      <video controls width="400" height="300">
+                        <source src="./assets/images/images_me/outdoor_test.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                      </video>
+
+                      <video controls width="400" height="300">
+                        <source src="./assets/images/images_me/outdoor_test1.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                      </video>
+
+                      <video controls width="400" height="300">
+                        <source src="./assets/images/images_me/in_lab_test.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                      </video>
+
+                      <video controls width="400" height="300">
+                        <source src="./assets/images/images_me/Testing_Outertyre.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                      </video>
+
+                      <video controls width="400" height="300">
+                        <source src="./assets/images/images_me/Testing_Movement.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                      </video>
+
+                      <video controls width="400" height="300">
+                        <source src="./assets/images/images_me/IMG_0171.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                      </video>
+                      
+                      <video controls width="400" height="300">
+                        <source src="./assets/images/images_me/IMG_0188.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                      </video>
+
+                      <video controls width="400" height="300">
+                        <source src="./assets/images/images_me/IMG_0223.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                      </video>
+                      
+                      <video controls width="400" height="300">
+                        <source src="./assets/images/images_me/IMG_0260.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                      </video>
+
+                      <video controls width="400" height="300">
+                        <source src="./assets/images/images_me/IMG_0412.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                      </video>
+                      
+                      <video controls width="400" height="300">
+                        <source src="./assets/images/images_me/IMG_0413.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                      </video>
+                      
+                      
+                      
+                      
+                      <img src="./assets/images/images_me/comp-arena.jpg" alt="sunwayteam" loading="lazy">
+                      <img src="./assets/images/images_me/final_design.jpg" alt="sunwayteam" loading="lazy">
+
+                      <img src="./assets/images/images_me/tyre_v1.1.png" alt="sunwayteam" loading="lazy">
+                      <img src="./assets/images/images_me/tyre_v1.png" alt="sunwayteam" loading="lazy">
+
+
+                      <img src="./assets/images/images_me/img01.JPG" alt="sunwayteam" loading="lazy">
+                      <img src="./assets/images/images_me/img02.JPG" alt="sunwayteam" loading="lazy">
+                      <img src="./assets/images/images_me/img03.JPG" alt="sunwayteam" loading="lazy">
+
+                      <img src="./assets/images/images_me/sunwayteam.jpg" alt="sunwayteam" loading="lazy">
+                      <img src="./assets/images/images_me/cutter-machine.jpg" alt="cutter-machine" loading="lazy">
+                      <img src="./assets/images/images_me/drilling-machine.jpg" alt="drilling-machine" loading="lazy">
+                      <img src="./assets/images/images_me/gas_tank.jpg" alt="gas_tank" loading="lazy">
+                      <img src="./assets/images/images_me/holder.jpg" alt="holder" loading="lazy">
+                      <img src="./assets/images/images_me/me.JPG" alt="me" loading="lazy">
+                      <img src="./assets/images/images_me/team-mate.jpg" alt="team-mate" loading="lazy">
+                      <img src="./assets/images/images_me/team1.jpg" alt="team1" loading="lazy">
+                      <img src="./assets/images/images_me/welding-machine.jpg" alt="welding-machine" loading="lazy">
+    
+                      <!-- Add more image elements as needed -->
+                    </div>
+                    <div class="image-viewer">
+                      <img src="" alt="Large Image" id="large-image">
+                    </div>
+                  </div>
+                </div>
+            </li>
+
+
+
+To put back, put after the          
+{
+         </ul>
+        </section>
+      </article>
+}
+
+
+
+
+      <article class="blog" data-page="robot-dog">
+
+        <header>
+          <h2 class="h2 article-title">Sunway Uni</h2>
+        </header>
+
+        <section class="blog-posts">
+
+          <ul class="blog-posts-frame">
+
+
+
+            <li class="blog-post-item">
+              
+
+                <div class="blog-content">
+
+                  <div class="blog-meta">
+                    <p class="blog-category">URock</p>
+
+                    <span class="dot"></span>
+
+                    <time datetime="2022-02-23">September 2023 - present</time>
+                  </div>
+
+                  <h3 class="h3 blog-item-title">quadruped dog </h3>
+
+                  <p class="blog-text">
+                    
+                  </p>
+
+                  <div class="image-gallery">
+                    <div class="image-stack">
+
+                      <!-- Video element -->
+                      <video controls width="400" height="300">
+                        <source src="./assets/images/Urock/IMG_0884 2.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                      </video>
+                      <video controls width="400" height="300">
+                        <source src="./assets/images/Urock/IMG_0887.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                      </video>
+                      <video controls width="400" height="300">
+                        <source src="./assets/images/Urock/IMG_0891 2.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                      </video>
+
+              
+                      <!-- Add more image elements as needed -->
+                    </div>
+                    <div class="image-viewer">
+                      <img src="" alt="Large Image" id="large-image">
+                    </div>
+                  </div>
+                </div>
+            </li>
+          </ul>
+        </section>
+      </article>
+
+
 # sidebar
 
 alt = Richard hanrick
