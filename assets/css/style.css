@@ -1074,6 +1074,14 @@ main {
 }
 
 
+/* Add this CSS to style the project images */
+.project-image {
+  width: 150px; /* Set a fixed width for medium-small size */
+  height: auto; /* Maintain aspect ratio */
+  object-fit: cover; /* Crop the image if necessary to fit the aspect ratio */
+}
+
+
 
 
 
