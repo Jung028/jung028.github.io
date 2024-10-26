@@ -820,7 +820,7 @@
 
 
 
-            <!--
+            
             <li class="blog-post-item">
                 <figure class="blog-banner-box">
                   <img src="./assets/images/images_me/final-design.png" style="height:300px"alt="combat-robot" loading="lazy">
@@ -883,7 +883,7 @@
               </div>
             </li>
 
-          -->
+        
 
 
 
@@ -1103,27 +1103,53 @@
 
 
         <section class="contact-form">
-
-          <h3 class="h3 form-title">Contact Form</h3>
-
-          <form action="#" class="form" data-form>
-
+          
+          <form action="#" class="form" data-form id="contactForm">
             <div class="input-wrapper">
               <input type="text" name="fullname" class="form-input" placeholder="Full name" required data-form-input>
-
               <input type="email" name="email" class="form-input" placeholder="Email address" required data-form-input>
             </div>
-
             <textarea name="message" class="form-input" placeholder="Your Message" required data-form-input></textarea>
-
-            <button class="form-btn" type="submit" disabled data-form-btn>
+            <button class="form-btn" type="submit" data-form-btn>
               <ion-icon name="paper-plane"></ion-icon>
               <span>Send Message</span>
             </button>
-
           </form>
-
         </section>
+        
+        <script>
+          document.getElementById('contactForm').addEventListener('submit', async (event) => {
+            event.preventDefault(); // Prevent the default form submission
+        
+            const formData = {
+              fullname: event.target.fullname.value,
+              email: event.target.email.value,
+              message: event.target.message.value,
+            };
+        
+            try {
+              const response = await fetch('http://localhost:5000/send', {
+                method: 'POST',
+                headers: {
+                  'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(formData),
+              });
+        
+              if (response.ok) {
+                alert('Message sent successfully!');
+                // Clear form inputs after successful submission
+                event.target.reset();
+              } else {
+                alert('Failed to send message. Please try again.');
+              }
+            } catch (error) {
+              console.error('Error:', error);
+              alert('An error occurred. Please try again later.');
+            }
+          });
+        </script>
+        
 
       </article>
 
