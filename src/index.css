@@ -6,48 +6,44 @@
 
 @layer base {
   :root {
-    --background: 222 47% 5%;
-    --foreground: 210 40% 95%;
+    --background: 0 0% 0%;
+    --foreground: 0 0% 100%;
 
-    --card: 222 47% 8%;
-    --card-foreground: 210 40% 95%;
+    --card: 0 0% 7%;
+    --card-foreground: 0 0% 100%;
 
-    --popover: 222 47% 8%;
-    --popover-foreground: 210 40% 95%;
+    --popover: 0 0% 9%;
+    --popover-foreground: 0 0% 100%;
 
-    --primary: 187 100% 50%;
-    --primary-foreground: 222 47% 5%;
+    --primary: 141 73% 42%; /* Spotify Green */
+    --primary-foreground: 0 0% 0%;
 
-    --secondary: 222 30% 14%;
-    --secondary-foreground: 210 40% 90%;
+    --secondary: 0 0% 12%;
+    --secondary-foreground: 0 0% 70%;
 
-    --muted: 222 30% 12%;
-    --muted-foreground: 215 20% 55%;
+    --muted: 0 0% 15%;
+    --muted-foreground: 0 0% 70%;
 
-    --accent: 265 90% 65%;
-    --accent-foreground: 210 40% 98%;
+    --accent: 0 0% 20%;
+    --accent-foreground: 0 0% 100%;
 
-    --destructive: 0 84% 60%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive: 0 62% 30%;
+    --destructive-foreground: 0 0% 100%;
 
-    --border: 222 30% 18%;
-    --input: 222 30% 18%;
-    --ring: 187 100% 50%;
+    --border: 0 0% 15%;
+    --input: 0 0% 15%;
+    --ring: 141 73% 42%;
 
-    --radius: 0.75rem;
+    --radius: 0.5rem;
 
-    --glow: 187 100% 50%;
-    --glow-secondary: 265 90% 65%;
-    --surface-glass: 222 47% 8%;
-
-    --sidebar-background: 222 47% 6%;
-    --sidebar-foreground: 210 40% 90%;
-    --sidebar-primary: 187 100% 50%;
-    --sidebar-primary-foreground: 222 47% 5%;
-    --sidebar-accent: 222 30% 14%;
-    --sidebar-accent-foreground: 210 40% 90%;
-    --sidebar-border: 222 30% 18%;
-    --sidebar-ring: 187 100% 50%;
+    --sidebar-background: 0 0% 0%;
+    --sidebar-foreground: 0 0% 70%;
+    --sidebar-primary: 141 73% 42%;
+    --sidebar-primary-foreground: 0 0% 0%;
+    --sidebar-accent: 0 0% 10%;
+    --sidebar-accent-foreground: 0 0% 100%;
+    --sidebar-border: 0 0% 0%;
+    --sidebar-ring: 141 73% 42%;
   }
 }
 
@@ -57,11 +53,21 @@
   }
 
   body {
-    @apply bg-background text-foreground font-sans antialiased;
+    @apply bg-black text-white font-sans antialiased;
+  }
+}
+
+@layer utilities {
+  .spotify-card {
+    @apply bg-[#181818] hover:bg-[#282828] transition-all duration-300 rounded-lg p-4;
+  }
+  
+  .spotify-gradient {
+    background: linear-gradient(to bottom, #222222, #121212);
   }
 
-  h1, h2, h3, h4, h5, h6 {
-    @apply font-heading;
+  .text-subdued {
+    @apply text-[#b3b3b3];
   }
 }
 

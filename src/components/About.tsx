@@ -1,44 +1,16 @@
-const skills = [
-  { category: "Frontend", items: ["React", "TypeScript", "Next.js", "Tailwind CSS"] },
-  { category: "Backend", items: ["Node.js", "Python", "PostgreSQL", "GraphQL"] },
-  { category: "DevOps", items: ["Docker", "AWS", "CI/CD", "Kubernetes"] },
-  { category: "Tools", items: ["Git", "Figma", "VS Code", "Linux"] },
-];
-
 const About = () => {
   return (
-    <section id="about" className="py-24">
-      <div className="container mx-auto px-6">
-        <h2 className="text-3xl md:text-5xl font-bold mb-4">
-          About <span className="gradient-text">Me</span>
-        </h2>
-        <div className="w-16 h-1 bg-primary rounded-full mb-12" />
+    <section id="about" className="py-12 md:py-24 bg-black">
+      <div className="container mx-auto px-4 md:px-6">
+        <h2 className="text-xl md:text-2xl font-bold mb-6 md:mb-8 text-white">About Me</h2>
+        <div className="max-w-4xl">
+          <p className="text-subdued leading-relaxed text-sm md:text-base mb-6">
+            Backend engineer currently pursuing an M.S. (Hons) in Computer Science (Advanced Entry) at the University of Sydney, specializing in Data Science and AI. Experienced in chargeback automation, distributed systems, and event-driven architectures across multiple regions. Proficient in Java, Python, REST APIs, microservices, and message brokers to design and deliver scalable, high-availability systems.
 
-        <div className="grid md:grid-cols-2 gap-16">
-          <div className="space-y-6">
-            <p className="text-muted-foreground leading-relaxed text-lg">
-              I'm a software engineer with a passion for building products that make a difference. 
-              With experience across the full stack, I specialize in creating performant, 
-              accessible, and beautifully designed web applications.
-            </p>
-            <p className="text-muted-foreground leading-relaxed text-lg">
-              When I'm not coding, you'll find me exploring new technologies, contributing to open source,
-              or sharing knowledge through writing and mentoring.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-2 gap-4">
-            {skills.map((group) => (
-              <div key={group.category} className="glass rounded-xl p-5 hover:box-glow transition-shadow duration-300">
-                <h3 className="font-mono text-primary text-sm mb-3 font-semibold">{group.category}</h3>
-                <ul className="space-y-1.5">
-                  {group.items.map((item) => (
-                    <li key={item} className="text-sm text-muted-foreground">{item}</li>
-                  ))}
-                </ul>
-              </div>
-            ))}
-          </div>
+          </p>
+          <p className="text-subdued leading-relaxed text-sm md:text-base">
+            Proven track record in implementing automated risk workflows, anomaly detection pipelines, and cross-entity NDF projects, while managing live incident resolution and performing root-cause analysis in multi-region deployments. Skilled at collaborating with multi-national teams, producing clear technical documentation, and delivering production-grade systems that integrate seamlessly across platforms.
+          </p>
         </div>
       </div>
     </section>
