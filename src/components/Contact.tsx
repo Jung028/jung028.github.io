@@ -1,10 +1,9 @@
-import { Mail, Github, Linkedin, Twitter } from "lucide-react";
+import { Mail, Github, Linkedin, Phone, MapPin } from "lucide-react";
 
 const socials = [
-  { icon: Github, label: "GitHub", href: "#" },
-  { icon: Linkedin, label: "LinkedIn", href: "#" },
-  { icon: Twitter, label: "Twitter", href: "#" },
-  { icon: Mail, label: "Email", href: "mailto:hello@example.com" },
+  { icon: Github, label: "GitHub", href: "https://github.com/Jung028" },
+  { icon: Linkedin, label: "LinkedIn", href: "https://www.linkedin.com/in/adam-lim-4247481a5/" },
+  { icon: Mail, label: "Email", href: "mailto:aedamjung@gmail.com" },
 ];
 
 const Contact = () => {
@@ -21,18 +20,34 @@ const Contact = () => {
           Feel free to reach out!
         </p>
 
-        <a
-          href="mailto:hello@example.com"
-          className="inline-block px-10 py-4 rounded-lg bg-primary text-primary-foreground font-semibold text-lg hover:opacity-90 transition-all box-glow mb-12"
-        >
-          Say Hello
-        </a>
+        <div className="flex flex-col items-center gap-6 mb-12">
+          <a
+            href="mailto:aedamjung@gmail.com"
+            className="inline-flex items-center gap-3 px-10 py-4 rounded-lg bg-primary text-primary-foreground font-semibold text-lg hover:opacity-90 transition-all box-glow"
+          >
+            <Mail size={20} />
+            Say Hello
+          </a>
+          
+          <div className="flex flex-col sm:flex-row gap-8 mt-4 text-muted-foreground font-mono text-sm">
+            <div className="flex items-center gap-2 justify-center">
+              <Phone size={16} className="text-primary" />
+              <span>+61 481782129</span>
+            </div>
+            <div className="flex items-center gap-2 justify-center">
+              <MapPin size={16} className="text-primary" />
+              <span>Chippendale, NSW, Australia</span>
+            </div>
+          </div>
+        </div>
 
         <div className="flex justify-center gap-6">
           {socials.map(({ icon: Icon, label, href }) => (
             <a
               key={label}
               href={href}
+              target="_blank"
+              rel="noopener noreferrer"
               aria-label={label}
               className="w-12 h-12 rounded-lg glass flex items-center justify-center text-muted-foreground hover:text-primary hover:box-glow transition-all duration-300"
             >
