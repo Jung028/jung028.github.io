@@ -7,6 +7,10 @@ import triPhoto1 from "@/assets/LittleAboutMe/triathlon_1.jpeg";
 import triPhoto2 from "@/assets/LittleAboutMe/triathlon_2.jpeg";
 import food from "@/assets/LittleAboutMe/food.jpg";
 import sunsets from "@/assets/LittleAboutMe/sunsets.jpeg";
+import firstMeet from "@/assets/LittleAboutMe/first_meet_2026.png";
+import mooreParkSunset from "@/assets/LittleAboutMe/moore_park_sunset.jpg";
+import usydNightView from "@/assets/LittleAboutMe/night_class_usyd_view.jpg";
+import usydSunset from "@/assets/LittleAboutMe/usyd_sunset.jpg";
 
 const facts = [
   { 
@@ -39,12 +43,37 @@ const facts = [
     image: sunsets,
     color: "bg-green-500"
   },
-  { 
+  {
     title: "Foodie",
     description: "I enjoy the occasional buffets with friends and colleagues",
     image: food,
     color: "bg-orange-500"
   },
+  { 
+    title: "USYD Sunset",
+    description: "Sunsets at Fisher Library",
+    image: usydSunset,
+    color: "bg-amber-500"
+  },
+  { 
+    title: "Night Class at USYD",
+    description: "night classeszzz",
+    image: usydNightView,
+    color: "bg-indigo-500"
+  },
+  { 
+    title: "Moore Park Sunset",
+    description: "Before training, a little sunset view",
+    image: mooreParkSunset,
+    color: "bg-cyan-500"
+  },
+  { 
+    title: "First Track Meet -2026",
+    description: "First 5K race in Sydney Olympic Stadium",
+    image: firstMeet,
+    color: "bg-pink-500"
+  },
+
 ];
 
 const LittleAboutMe = () => {
