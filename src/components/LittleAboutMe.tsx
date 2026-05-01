@@ -11,6 +11,7 @@ import firstMeet from "@/assets/LittleAboutMe/first_meet_2026.png";
 import mooreParkSunset from "@/assets/LittleAboutMe/moore_park_sunset.jpg";
 import usydNightView from "@/assets/LittleAboutMe/night_class_usyd_view.jpg";
 import usydSunset from "@/assets/LittleAboutMe/usyd_sunset.jpg";
+import first_house_hackathon from "@/assets/LittleAboutMe/first_house_hackathon.jpeg";
 
 const facts = [
   { 
@@ -71,6 +72,12 @@ const facts = [
     title: "First Track Meet -2026",
     description: "First 5K race in Sydney Olympic Stadium",
     image: firstMeet,
+    color: "bg-pink-500"
+  },
+  {
+    title: "First House Hackathon",
+    description: "Build and iterated in 17 hours through the night with my teammates for our first house hackathon together, built gatekeep, a better way to find clothing",
+    image: first_house_hackathon,
     color: "bg-pink-500"
   },
 

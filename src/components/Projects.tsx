@@ -7,6 +7,8 @@ import { Dialog, DialogContent, DialogTitle, DialogDescription } from "@/compone
 import ipayThumbnail from "@/assets/Projects/Thumbnail/ipay_tn.png";
 import ipayVideo from "@/assets/Projects/Video/ipay.mov";
 import topupVideo from "@/assets/Projects/Video/topup.mov";
+import gatekeepThumbnail from "@/assets/Projects/Thumbnail/gatekeep.png";
+import gatekeepVideo from "@/assets/Projects/Video/gatekeep.mov";
 
 const projects = [
   {
@@ -20,9 +22,20 @@ const projects = [
     thumbnail: ipayThumbnail,
     videos: [ipayVideo, topupVideo],
   },
+  {
+    title: "AI-Powered Store Finder",
+    description: "A web application that helps users find nearby stores based on their location and preferences. It uses AI to provide personalized recommendations and real-time inventory updates.",
+    tags: ["ReactJS", "TypeScript", "Leaflet & React Leaflet", "Vercel", "Cheerio", "Claude API"],
+    github: "https://github.com/Jung028",
+    live: "#",
+    category: "hackathon",
+    featured: true,
+    thumbnail: gatekeepThumbnail,
+    videos: [gatekeepVideo],
+  },
 ];
 
-const categories = ["all", "fintech"];
+const categories = ["all", "fintech", "hackathon"];
 
 const Projects = () => {
   const [selectedProject, setSelectedProject] = useState<typeof projects[0] | null>(null);
