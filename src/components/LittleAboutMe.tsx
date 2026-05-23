@@ -157,21 +157,18 @@ const LittleAboutMe = () => {
                   className="w-full h-full object-cover transition-transform duration-500 ease-out group-hover/card:scale-105"
                   draggable={false}
                 />
-                {/* Always-visible title bar */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
-                <div className="absolute bottom-0 left-0 right-0 p-3 md:p-4 translate-y-0 group-hover/card:translate-y-full transition-transform duration-300 ease-in-out">
+                {/* Bottom gradient for readability */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+                {/* Title — fades out on hover */}
+                <div className="absolute bottom-0 left-0 right-0 p-3 md:p-4 transition-opacity duration-300 group-hover/card:opacity-0">
                   <p className="text-white font-semibold text-xs md:text-sm leading-snug drop-shadow">
                     {fact.title}
                   </p>
                 </div>
-                {/* Hover overlay */}
-                <div className={`absolute inset-0 bg-gradient-to-br ${fact.gradient} flex flex-col justify-end p-5 md:p-6 translate-y-full group-hover/card:translate-y-0 transition-transform duration-300 ease-in-out`}>
-                  <h3 className="text-white font-bold text-sm md:text-base mb-2 leading-snug">
-                    {fact.title}
-                  </h3>
-                  <p className="text-white/85 text-xs md:text-sm leading-relaxed">
-                    {fact.description}
-                  </p>
+                {/* Hover caption */}
+                <div className="absolute bottom-0 left-0 right-0 p-3 md:p-4 bg-black/40 backdrop-blur-sm opacity-0 translate-y-1 group-hover/card:opacity-100 group-hover/card:translate-y-0 transition-all duration-300 ease-out">
+                  <p className="text-white font-semibold text-xs md:text-sm leading-snug mb-1">{fact.title}</p>
+                  <p className="text-white/75 text-[11px] md:text-xs leading-relaxed">{fact.description}</p>
                 </div>
               </div>
             ))}
