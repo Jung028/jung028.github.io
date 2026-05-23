@@ -7,6 +7,7 @@ import { Dialog, DialogContent, DialogTitle, DialogDescription } from "@/compone
 import ipayThumbnail from "@/assets/Projects/Thumbnail/ipay_tn.png";
 import ipayVideo from "@/assets/Projects/Video/ipay.mov";
 import topupVideo from "@/assets/Projects/Video/topup.mov";
+import iagentChatVideo from "@/assets/Projects/Video/iagent_chat_1.mov";
 import gatekeepThumbnail from "@/assets/Projects/Thumbnail/gatekeep.png";
 import gatekeepVideo from "@/assets/Projects/Video/gatekeep.mov";
 
@@ -20,7 +21,7 @@ const projects = [
     category: "fintech",
     featured: true,
     thumbnail: ipayThumbnail,
-    videos: [ipayVideo, topupVideo],
+    videos: [ipayVideo, topupVideo, iagentChatVideo],
   },
   {
     title: "AI-Powered Store Finder",
