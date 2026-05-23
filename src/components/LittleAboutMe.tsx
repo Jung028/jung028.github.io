@@ -1,4 +1,4 @@
-import { useRef, useEffect } from "react";
+import { useRef, useState, useEffect } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
 import antPhoto1 from "@/assets/LittleAboutMe/ant_intl_1.jpeg";
