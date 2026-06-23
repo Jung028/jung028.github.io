@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { ExternalLink, Github, FolderKanban, Play, ChevronLeft, ChevronRight } from "lucide-react";
+import { ExternalLink, Github, FolderKanban, Play, ChevronLeft, ChevronRight, BookOpen } from "lucide-react";
+import { Link } from "react-router-dom";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Dialog, DialogContent, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 
@@ -22,6 +23,7 @@ const projects = [
     featured: true,
     thumbnail: ipayThumbnail,
     videos: [ipayVideo, topupVideo, iagentChatVideo],
+    slug: "ai-payment-chargeback",
   },
   {
     title: "AI-Powered Store Finder",
@@ -33,6 +35,7 @@ const projects = [
     featured: true,
     thumbnail: gatekeepThumbnail,
     videos: [gatekeepVideo],
+    slug: "ai-store-finder",
   },
 ];
 
@@ -122,6 +125,13 @@ const Projects = () => {
                         <p className="text-subdued text-xs md:text-sm line-clamp-2 md:line-clamp-3 leading-relaxed break-words">
                           {project.description}
                         </p>
+                        <Link
+                          to={`/projects/${project.slug}`}
+                          onClick={(e) => e.stopPropagation()}
+                          className="mt-2 inline-flex items-center gap-1.5 text-xs text-primary hover:underline w-fit"
+                        >
+                          <BookOpen size={12} /> View full system analysis
+                        </Link>
                       </div>
                     </div>
                   ))}
