@@ -6,11 +6,10 @@ import { Dialog, DialogContent, DialogTitle, DialogDescription } from "@/compone
 
 // Project assets
 import ipayThumbnail from "@/assets/Projects/Thumbnail/ipay_tn.png";
-import ipayVideo from "@/assets/Projects/Video/ipay.mov";
-import topupVideo from "@/assets/Projects/Video/topup.mov";
-import iagentChatVideo from "@/assets/Projects/Video/iagent_chat_1.mov";
+import ipayVideo from "@/assets/Projects/Video/ipay.mp4";
+import iagentChatVideo from "@/assets/Projects/Video/iagent_chat_1.mp4";
 import gatekeepThumbnail from "@/assets/Projects/Thumbnail/gatekeep.png";
-import gatekeepVideo from "@/assets/Projects/Video/gatekeep.mov";
+import gatekeepVideo from "@/assets/Projects/Video/gatekeep.mp4";
 
 const projects = [
   {
@@ -22,7 +21,7 @@ const projects = [
     category: "fintech",
     featured: true,
     thumbnail: ipayThumbnail,
-    videos: [ipayVideo, topupVideo, iagentChatVideo],
+    videos: [ipayVideo, iagentChatVideo],
     slug: "ai-payment-chargeback",
   },
   {
