@@ -19,6 +19,9 @@ type ProjectEmbedData = {
 const DEFAULT_NOTION =
   "https://glorious-flock-7cf.notion.site/ebd//342d911b2cdb8067bbefcf0b45db1d18";
 
+const SA_NOTION =
+  "https://glorious-flock-7cf.notion.site/ebd//236d911b2cdb80a78310d3ddfb92f965";
+
 const PROJECT_EMBEDS: Record<string, ProjectEmbedData> = {
   "ai-payment-chargeback": {
     title: "AI-Powered Payment & Chargeback System",
@@ -26,11 +29,12 @@ const PROJECT_EMBEDS: Record<string, ProjectEmbedData> = {
       "Distributed payment platform with AI-driven anomaly detection, DLQ retries, and event-driven workflows.",
     github: "https://github.com/Jung028",
     pages: [
-      { id: "overview", title: "Overview", notionUrl: DEFAULT_NOTION },
-      { id: "payment-service", title: "Payment Service", notionUrl: DEFAULT_NOTION },
-      { id: "chargeback-engine", title: "Chargeback Engine", notionUrl: DEFAULT_NOTION },
-      { id: "anomaly-detection", title: "AI Anomaly Detection", notionUrl: DEFAULT_NOTION },
-      { id: "admin-dashboard", title: "Admin Dashboard", notionUrl: DEFAULT_NOTION },
+      { id: "overview", title: "Account Center [SA]", notionUrl: "https://glorious-flock-7cf.notion.site/ebd//2acd911b2cdb80e2bd73f12ce45a7b74" },
+      { id: "system-architecture", title: "Business Center [SA]", notionUrl: "https://glorious-flock-7cf.notion.site/ebd//2acd911b2cdb80829ef7fcc6debde616" },
+      { id: "payment-service", title: "Amount Over Limit OTP Verification [SA]", notionUrl: "https://glorious-flock-7cf.notion.site/ebd//2fad911b2cdb805488dcd938173d3f06" },
+      { id: "chargeback-engine", title: "Top Up [SA]", notionUrl: "https://glorious-flock-7cf.notion.site/ebd//32bd911b2cdb80c98103fa9a051de7a6" },
+      { id: "anomaly-detection", title: "iAgent (Agent Center) [SA]", notionUrl: "https://glorious-flock-7cf.notion.site/ebd//33fd911b2cdb80da88f5fc3e332c51ba" },
+      { id: "admin-dashboard", title: "Real-Time Fraud Detection and Risk Scoring Engine [SA]", notionUrl: "https://glorious-flock-7cf.notion.site/ebd//366d911b2cdb80619045fe2009990ef9" },
     ],
   },
   "ai-store-finder": {
@@ -40,6 +44,7 @@ const PROJECT_EMBEDS: Record<string, ProjectEmbedData> = {
     github: "https://github.com/Jung028",
     pages: [
       { id: "overview", title: "Overview", notionUrl: DEFAULT_NOTION },
+      { id: "system-architecture", title: "System Architecture", notionUrl: SA_NOTION },
       { id: "geo-search", title: "Map & Geo Search", notionUrl: DEFAULT_NOTION },
       { id: "inventory-scraper", title: "Inventory Scraper", notionUrl: DEFAULT_NOTION },
       { id: "recommendations", title: "AI Recommendations", notionUrl: DEFAULT_NOTION },
