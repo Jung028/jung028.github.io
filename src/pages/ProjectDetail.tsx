@@ -35,6 +35,7 @@ const PROJECT_EMBEDS: Record<string, ProjectEmbedData> = {
       { id: "chargeback-engine", title: "Top Up [SA]", notionUrl: "https://glorious-flock-7cf.notion.site/ebd//32bd911b2cdb80c98103fa9a051de7a6" },
       { id: "anomaly-detection", title: "iAgent (Agent Center) [SA]", notionUrl: "https://glorious-flock-7cf.notion.site/ebd//33fd911b2cdb80da88f5fc3e332c51ba" },
       { id: "admin-dashboard", title: "Real-Time Fraud Detection and Risk Scoring Engine [SA]", notionUrl: "https://glorious-flock-7cf.notion.site/ebd//366d911b2cdb80619045fe2009990ef9" },
+      { id: "qr-transactions", title: "QR Transactions for P2P, P2M, R2P, group transfer and imerchant development [SA]", notionUrl: "https://glorious-flock-7cf.notion.site/ebd//342d911b2cdb8067bbefcf0b45db1d18" },
     ],
   },
   "ai-store-finder": {
