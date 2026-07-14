@@ -13,7 +13,7 @@ import gatekeepVideo from "@/assets/Projects/Video/gatekeep.mp4";
 
 const projects = [
   {
-    title: "AI-Powered Payment & Chargeback System",
+    title: "AI-Powered Payment Platform",
     description: "Distributed payment platform supporting top-up, refund, and chargeback workflows with strong consistency. Features AI-driven anomaly detection for fraudulent transactions and robust retry mechanisms using DLQ.",
     tags: ["Java", "Spring Boot", "Python", "PostgreSQL", "Redis", "React", "Stripe API", "Event-driven"],
     github: "https://github.com/Jung028",

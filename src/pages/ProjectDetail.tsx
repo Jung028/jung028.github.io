@@ -24,7 +24,7 @@ const SA_NOTION =
 
 const PROJECT_EMBEDS: Record<string, ProjectEmbedData> = {
   "ai-payment-chargeback": {
-    title: "AI-Powered Payment & Chargeback System",
+    title: "AI-Powered Payment Platform",
     description:
       "Distributed payment platform with AI-driven anomaly detection, DLQ retries, and event-driven workflows.",
     github: "https://github.com/Jung028",
