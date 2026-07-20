@@ -85,16 +85,16 @@ const Projects = () => {
 
           {categories.map((cat) => (
             <TabsContent key={cat} value={cat} className="mt-0">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-5">
                 {projects
                   .filter((p) => cat === "all" || p.category === cat)
                   .map((project, i) => (
                     <div
                       key={project.title}
                       onClick={() => handleOpenVideo(project)}
-                      className="bg-[#181818] hover:bg-[#282828] transition-all duration-300 rounded-lg p-4 md:p-6 group cursor-pointer w-full overflow-hidden"
+                      className="bg-[#181818] hover:bg-[#282828] transition-all duration-300 rounded-lg p-3 md:p-4 group cursor-pointer w-full overflow-hidden"
                     >
-                      <div className="relative aspect-video mb-4 md:mb-6 shadow-2xl overflow-hidden rounded-md bg-gradient-to-br from-[#333] to-[#121212] flex items-center justify-center border border-white/5">
+                      <div className="relative aspect-video mb-3 md:mb-4 shadow-2xl overflow-hidden rounded-md bg-gradient-to-br from-[#333] to-[#121212] flex items-center justify-center border border-white/5">
                         {project.thumbnail ? (
                           <img 
                             src={project.thumbnail} 
@@ -102,26 +102,26 @@ const Projects = () => {
                             className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                           />
                         ) : (
-                          <FolderKanban className="text-white/10 group-hover:scale-110 transition-transform duration-500" size={60} />
+                          <FolderKanban className="text-white/10 group-hover:scale-110 transition-transform duration-500" size={44} />
                         )}
                         <div className="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors duration-300" />
                         
                         {/* Play button bottom right of image */}
                         {project.videos && project.videos.length > 0 && (
                           <button 
-                            className="absolute bottom-3 right-3 md:bottom-4 md:right-4 bg-primary hover:bg-[#1ed760] text-black p-2 md:p-3 rounded-full font-bold shadow-xl transition-all transform hover:scale-110 active:scale-95 group-hover:translate-y-0 translate-y-2 opacity-0 group-hover:opacity-100 flex items-center gap-1 md:gap-2 z-10"
+                            className="absolute bottom-2 right-2 md:bottom-3 md:right-3 bg-primary hover:bg-[#1ed760] text-black p-2 rounded-full font-bold shadow-xl transition-all transform hover:scale-110 active:scale-95 group-hover:translate-y-0 translate-y-2 opacity-0 group-hover:opacity-100 flex items-center gap-1 z-10"
                           >
-                             <Play className="fill-black w-4 h-4 md:w-5 md:h-5" size={20} />
-                             <span className="text-[10px] md:text-sm font-bold pr-1">Play Video</span>
+                             <Play className="fill-black w-3.5 h-3.5 md:w-4 md:h-4" size={16} />
+                             <span className="text-[10px] md:text-xs font-bold pr-1">Play Video</span>
                           </button>
                         )}
                       </div>
 
                       <div className="flex flex-col gap-2 min-w-0 flex-1 overflow-hidden">
-                        <h3 className="font-bold text-lg md:text-2xl text-white truncate group-hover:whitespace-normal transition-all">
+                        <h3 className="font-bold text-base md:text-lg text-white truncate group-hover:whitespace-normal transition-all">
                           {project.title}
                         </h3>
-                        <p className="text-subdued text-xs md:text-sm line-clamp-2 md:line-clamp-3 leading-relaxed break-words">
+                        <p className="text-subdued text-xs line-clamp-2 leading-relaxed break-words">
                           {project.description}
                         </p>
                         <Link
