@@ -4,8 +4,8 @@ import { ArrowLeft, Github, ExternalLink, FileText, ChevronLeft, ChevronRight, V
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { VideoLightbox } from "@/components/VideoLightbox";
 
-import iagentChatVideo from "@/assets/Projects/Video/iagent_chat_1.mp4";
-import qrTransactionsVideo1 from "@/assets/Projects/Video/qr_transactions_1.mp4";
+import iagentChatVideo from "@/assets/Projects/ipay/iagent_chat_1.mp4";
+import qrTransactionsVideo1 from "@/assets/Projects/ipay/qr_transactions_1.mp4";
 
 type SubPage = {
   id: string;

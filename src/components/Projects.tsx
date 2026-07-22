@@ -5,11 +5,13 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Dialog, DialogContent, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 
 // Project assets
-import ipayThumbnail from "@/assets/Projects/Thumbnail/ipay_tn.png";
-import ipayVideo from "@/assets/Projects/Video/ipay.mp4";
-import iagentChatVideo from "@/assets/Projects/Video/iagent_chat_1.mp4";
-import gatekeepThumbnail from "@/assets/Projects/Thumbnail/gatekeep.png";
-import gatekeepVideo from "@/assets/Projects/Video/gatekeep.mp4";
+import ipayThumbnail from "@/assets/Projects/ipay/thumbnail.png";
+import ipayVideo from "@/assets/Projects/ipay/ipay.mp4";
+import iagentChatVideo from "@/assets/Projects/ipay/iagent_chat_1.mp4";
+import iagentChatVideoMov from "@/assets/Projects/ipay/iagent_chat_1.mov";
+import gatekeepThumbnail from "@/assets/Projects/gatekeep/thumbnail.png";
+import gatekeepVideo from "@/assets/Projects/gatekeep/gatekeep.mp4";
+import tracelyThumbnail from "@/assets/Projects/tracely/thumbnail.png";
 
 const projects = [
   {
@@ -21,7 +23,7 @@ const projects = [
     category: "fintech",
     featured: true,
     thumbnail: ipayThumbnail,
-    videos: [ipayVideo, iagentChatVideo],
+    videos: [ipayVideo, iagentChatVideo, iagentChatVideoMov],
     slug: "ai-payment-chargeback",
   },
   {
@@ -34,11 +36,25 @@ const projects = [
     featured: true,
     thumbnail: gatekeepThumbnail,
     videos: [gatekeepVideo],
+    hasDetail: false,
     slug: "ai-store-finder",
+  },
+  {
+    title: "Tracely",
+    description: "Agentic incident-response platform that auto-investigates production issues across logs, databases, and code, proposes a multi-step fix plan, and executes it only after human approval.",
+    tags: ["Next.js", "Python", "FastAPI", "Claude API", "LangGraph", "PostgreSQL", "Celery", "Redis"],
+    github: "https://github.com/Jung028",
+    live: "#",
+    category: "platform",
+    featured: true,
+    thumbnail: tracelyThumbnail,
+    videos: [],
+    hasDetail: false,
+    slug: "tracely",
   },
 ];
 
-const categories = ["all", "fintech", "hackathon"];
+const categories = ["all", "fintech", "hackathon", "platform"];
 
 const Projects = () => {
   const [selectedProject, setSelectedProject] = useState<typeof projects[0] | null>(null);
@@ -124,13 +140,15 @@ const Projects = () => {
                         <p className="text-subdued text-xs line-clamp-2 leading-relaxed break-words">
                           {project.description}
                         </p>
-                        <Link
-                          to={`/projects/${project.slug}`}
-                          onClick={(e) => e.stopPropagation()}
-                          className="mt-2 inline-flex items-center gap-1.5 text-xs text-primary hover:underline w-fit"
-                        >
-                          <BookOpen size={12} /> View full system analysis
-                        </Link>
+                        {project.hasDetail !== false && (
+                          <Link
+                            to={`/projects/${project.slug}`}
+                            onClick={(e) => e.stopPropagation()}
+                            className="mt-2 inline-flex items-center gap-1.5 text-xs text-primary hover:underline w-fit"
+                          >
+                            <BookOpen size={12} /> View full system analysis
+                          </Link>
+                        )}
                       </div>
                     </div>
                   ))}
