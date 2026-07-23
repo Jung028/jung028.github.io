@@ -119,6 +119,7 @@ const ProjectCard = ({
   onOpen: (project: Project, index: number) => void;
 }) => {
   const [previewIndex, setPreviewIndex] = useState(0);
+  const [expanded, setExpanded] = useState(false);
 
   return (
     <div
@@ -176,10 +177,24 @@ const ProjectCard = ({
         <h3 className="font-bold text-base md:text-lg text-white truncate group-hover:whitespace-normal transition-all">
           {project.title}
         </h3>
-        <p className="text-subdued text-xs line-clamp-2 leading-relaxed break-words">
-          <span className="text-white/40 font-semibold">Description: </span>
-          {project.description}
-        </p>
+        <div className="min-h-[4.5rem]">
+          <p className={`text-subdued text-sm leading-relaxed break-words ${expanded ? "" : "line-clamp-3"}`}>
+            <span className="text-white/40 font-semibold">Description: </span>
+            {project.description}
+          </p>
+          {project.description.length > 140 && (
+            <button
+              type="button"
+              onClick={(e) => {
+                e.stopPropagation();
+                setExpanded((v) => !v);
+              }}
+              className="mt-1 text-xs text-primary hover:underline"
+            >
+              {expanded ? "Show less" : "Show more"}
+            </button>
+          )}
+        </div>
         <a
           href={project.github}
           target="_blank"
@@ -266,7 +281,14 @@ const Projects = () => {
           <DialogContent className="sm:max-w-[90vw] md:max-w-4xl p-0 bg-black/95 border-none overflow-hidden flex flex-col items-center justify-center">
             <DialogTitle className="sr-only">Project Video</DialogTitle>
             <DialogDescription className="sr-only">Video demonstration of {selectedProject?.title}</DialogDescription>
-            {selectedProject && (
+            {selectedProject && selectedProject.videos.length === 0 && (
+              <img
+                src={selectedProject.thumbnail}
+                alt={selectedProject.title}
+                className="max-w-full max-h-[85vh] w-auto h-auto object-contain"
+              />
+            )}
+            {selectedProject && selectedProject.videos.length > 0 && (
               <div className="relative w-full max-h-[85vh] flex items-center justify-center group/video overflow-hidden">
                 <video
                   key={selectedProject.videos[currentVideoIndex].src}
