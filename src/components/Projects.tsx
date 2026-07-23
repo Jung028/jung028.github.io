@@ -12,6 +12,7 @@ import iagentChatVideoMov from "@/assets/Projects/ipay/iagent_chat_1.mov";
 import gatekeepThumbnail from "@/assets/Projects/gatekeep/thumbnail.png";
 import gatekeepVideo from "@/assets/Projects/gatekeep/gatekeep.mp4";
 import tracelyThumbnail from "@/assets/Projects/tracely/thumbnail.png";
+import sundogThumbnail from "@/assets/Projects/sundog/thumbnail.png";
 
 type Project = {
   title: string;
@@ -32,7 +33,7 @@ const projects: Project[] = [
     title: "AI-Powered Payment Platform",
     description: "Distributed payment platform supporting top-up, refund, and chargeback workflows with strong consistency. Features AI-driven anomaly detection for fraudulent transactions and robust retry mechanisms using DLQ.",
     tags: ["Java", "Spring Boot", "Python", "PostgreSQL", "Redis", "React", "Stripe API", "Event-driven"],
-    github: "https://github.com/Jung028",
+    github: "https://github.com/Jung028/ipayment",
     live: "#",
     category: "fintech",
     featured: true,
@@ -44,7 +45,7 @@ const projects: Project[] = [
     title: "AI-Powered Store Finder",
     description: "A web application that helps users find nearby stores based on their location and preferences. It uses AI to provide personalized recommendations and real-time inventory updates.",
     tags: ["ReactJS", "TypeScript", "Leaflet & React Leaflet", "Vercel", "Cheerio", "Claude API"],
-    github: "https://github.com/Jung028",
+    github: "https://github.com/serenazhu26-debug/gatekeep-1",
     live: "#",
     category: "hackathon",
     featured: true,
@@ -57,7 +58,7 @@ const projects: Project[] = [
     title: "Tracely",
     description: "Agentic incident-response platform that auto-investigates production issues across logs, databases, and code, proposes a multi-step fix plan, and executes it only after human approval.",
     tags: ["Next.js", "Python", "FastAPI", "Claude API", "LangGraph", "PostgreSQL", "Celery", "Redis"],
-    github: "https://github.com/Jung028",
+    github: "https://github.com/Jung028/tracely",
     live: "#",
     category: "platform",
     featured: true,
@@ -66,9 +67,28 @@ const projects: Project[] = [
     hasDetail: false,
     slug: "tracely",
   },
+  {
+    title: "SunDog",
+    description: "Final Year Project: design and development of a quadruped robot for autonomous navigation in dynamic environments, running on a Jetson Nano Orin with ROS Noetic, LiDAR-based SLAM, and depth-camera perception.",
+    tags: ["ROS", "C++", "Python", "Jetson Nano Orin", "SLAM", "LiDAR", "CHAMP Quadruped Controller", "Computer Vision"],
+    github: "https://github.com/Jung028/SunDog",
+    live: "#",
+    category: "robotics",
+    featured: true,
+    thumbnail: sundogThumbnail,
+    videos: [],
+    hasDetail: false,
+    slug: "sundog",
+  },
 ];
 
-const categories = ["all", "fintech", "hackathon", "platform"];
+const categories = ["all", "fintech", "hackathon", "platform", "robotics"];
+
+const getGithubLabel = (url: string) => {
+  const segments = url.replace(/\/$/, "").split("/");
+  const repo = segments[segments.length - 1];
+  return repo && repo !== "Jung028" ? repo : "Profile";
+};
 
 const ProjectCard = ({
   project,
@@ -147,7 +167,7 @@ const ProjectCard = ({
         >
           <Github size={12} />
           <span className="text-white/40 font-semibold">Github:</span>
-          <span className="underline">Repository</span>
+          <span className="underline">{getGithubLabel(project.github)}</span>
         </a>
         {project.hasDetail !== false && (
           <Link
