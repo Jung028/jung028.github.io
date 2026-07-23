@@ -9,10 +9,18 @@ import ipayThumbnail from "@/assets/Projects/ipay/thumbnail.png";
 import ipayVideo from "@/assets/Projects/ipay/ipay.mp4";
 import iagentChatVideo from "@/assets/Projects/ipay/iagent_chat_1.mp4";
 import iagentChatVideoMov from "@/assets/Projects/ipay/iagent_chat_1.mov";
+import groupPaymentVideo from "@/assets/Projects/ipay/group_payment.mp4";
+import groupPaymentThumbnail from "@/assets/Projects/ipay/group_payment.png";
 import gatekeepThumbnail from "@/assets/Projects/gatekeep/thumbnail.png";
 import gatekeepVideo from "@/assets/Projects/gatekeep/gatekeep.mp4";
 import tracelyThumbnail from "@/assets/Projects/tracely/thumbnail.png";
 import sundogThumbnail from "@/assets/Projects/sundog/thumbnail.png";
+import sundogVideo from "@/assets/Projects/sundog/sundog.mov";
+
+type Clip = {
+  src: string;
+  poster?: string;
+};
 
 type Project = {
   title: string;
@@ -23,7 +31,7 @@ type Project = {
   category: string;
   featured: boolean;
   thumbnail: string;
-  videos: string[];
+  videos: Clip[];
   hasDetail?: boolean;
   slug: string;
 };
@@ -38,7 +46,12 @@ const projects: Project[] = [
     category: "fintech",
     featured: true,
     thumbnail: ipayThumbnail,
-    videos: [ipayVideo, iagentChatVideo, iagentChatVideoMov],
+    videos: [
+      { src: ipayVideo, poster: ipayThumbnail },
+      { src: iagentChatVideo, poster: ipayThumbnail },
+      { src: iagentChatVideoMov, poster: ipayThumbnail },
+      { src: groupPaymentVideo, poster: groupPaymentThumbnail },
+    ],
     slug: "ai-payment-chargeback",
   },
   {
@@ -50,7 +63,7 @@ const projects: Project[] = [
     category: "hackathon",
     featured: true,
     thumbnail: gatekeepThumbnail,
-    videos: [gatekeepVideo],
+    videos: [{ src: gatekeepVideo, poster: gatekeepThumbnail }],
     hasDetail: false,
     slug: "ai-store-finder",
   },
@@ -60,7 +73,7 @@ const projects: Project[] = [
     tags: ["Next.js", "Python", "FastAPI", "Claude API", "LangGraph", "PostgreSQL", "Celery", "Redis"],
     github: "https://github.com/Jung028/tracely",
     live: "#",
-    category: "platform",
+    category: "aiops",
     featured: true,
     thumbnail: tracelyThumbnail,
     videos: [],
@@ -76,13 +89,21 @@ const projects: Project[] = [
     category: "robotics",
     featured: true,
     thumbnail: sundogThumbnail,
-    videos: [],
+    videos: [{ src: sundogVideo, poster: sundogThumbnail }],
     hasDetail: false,
     slug: "sundog",
   },
 ];
 
-const categories = ["all", "fintech", "hackathon", "platform", "robotics"];
+const categories = ["all", "fintech", "hackathon", "aiops", "robotics"];
+
+const categoryLabels: Record<string, string> = {
+  all: "All",
+  fintech: "Fintech",
+  hackathon: "Hackathon",
+  aiops: "AIOPS",
+  robotics: "Robotics",
+};
 
 const getGithubLabel = (url: string) => {
   const segments = url.replace(/\/$/, "").split("/");
@@ -127,10 +148,10 @@ const ProjectCard = ({
         )}
       </div>
 
-      {/* Minimised row for picking which clip to view */}
+      {/* Minimised row of clip pics — click one to expand it */}
       {project.videos.length > 1 && (
         <div className="flex gap-1.5 mb-3 overflow-x-auto">
-          {project.videos.map((_, idx) => (
+          {project.videos.map((clip, idx) => (
             <button
               key={idx}
               type="button"
@@ -138,13 +159,14 @@ const ProjectCard = ({
               onClick={(e) => {
                 e.stopPropagation();
                 setPreviewIndex(idx);
+                onOpen(project, idx);
               }}
               className={`relative shrink-0 w-12 h-8 rounded overflow-hidden border transition-colors ${
                 idx === previewIndex ? "border-primary ring-1 ring-primary" : "border-white/10 hover:border-white/40"
               }`}
             >
-              <img src={project.thumbnail} alt="" className="w-full h-full object-cover opacity-60" />
-              <Play size={10} className="absolute inset-0 m-auto fill-white text-white" />
+              <img src={clip.poster ?? project.thumbnail} alt="" className="w-full h-full object-cover opacity-80" />
+              <Play size={10} className="absolute inset-0 m-auto fill-white text-white drop-shadow" />
             </button>
           ))}
         </div>
@@ -216,12 +238,12 @@ const Projects = () => {
         <Tabs defaultValue="all" className="w-full">
           <TabsList className="mb-6 md:mb-8 bg-transparent p-0 h-auto gap-2 md:gap-4 flex-wrap">
             {categories.map((cat) => (
-              <TabsTrigger 
-                key={cat} 
-                value={cat} 
-                className="capitalize rounded-full px-3 md:px-4 py-1 md:py-1.5 bg-[#2a2a2a] text-white data-[state=active]:bg-white data-[state=active]:text-black border-none text-[10px] md:text-xs"
+              <TabsTrigger
+                key={cat}
+                value={cat}
+                className="rounded-full px-3 md:px-4 py-1 md:py-1.5 bg-[#2a2a2a] text-white data-[state=active]:bg-white data-[state=active]:text-black border-none text-[10px] md:text-xs"
               >
-                {cat}
+                {categoryLabels[cat] ?? cat}
               </TabsTrigger>
             ))}
           </TabsList>
@@ -246,15 +268,16 @@ const Projects = () => {
             <DialogDescription className="sr-only">Video demonstration of {selectedProject?.title}</DialogDescription>
             {selectedProject && (
               <div className="relative w-full max-h-[85vh] flex items-center justify-center group/video overflow-hidden">
-                <video 
-                  key={selectedProject.videos[currentVideoIndex]}
-                  controls 
-                  autoPlay 
+                <video
+                  key={selectedProject.videos[currentVideoIndex].src}
+                  poster={selectedProject.videos[currentVideoIndex].poster}
+                  controls
+                  autoPlay
                   playsInline
                   className="max-w-full max-h-[85vh] w-auto h-auto object-contain"
                 >
-                  <source src={selectedProject.videos[currentVideoIndex]} type="video/quicktime" />
-                  <source src={selectedProject.videos[currentVideoIndex]} type="video/mp4" />
+                  <source src={selectedProject.videos[currentVideoIndex].src} type="video/quicktime" />
+                  <source src={selectedProject.videos[currentVideoIndex].src} type="video/mp4" />
                   Your browser does not support the video tag.
                 </video>
 
