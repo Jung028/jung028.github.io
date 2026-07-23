@@ -13,7 +13,21 @@ import gatekeepThumbnail from "@/assets/Projects/gatekeep/thumbnail.png";
 import gatekeepVideo from "@/assets/Projects/gatekeep/gatekeep.mp4";
 import tracelyThumbnail from "@/assets/Projects/tracely/thumbnail.png";
 
-const projects = [
+type Project = {
+  title: string;
+  description: string;
+  tags: string[];
+  github: string;
+  live: string;
+  category: string;
+  featured: boolean;
+  thumbnail: string;
+  videos: string[];
+  hasDetail?: boolean;
+  slug: string;
+};
+
+const projects: Project[] = [
   {
     title: "AI-Powered Payment Platform",
     description: "Distributed payment platform supporting top-up, refund, and chargeback workflows with strong consistency. Features AI-driven anomaly detection for fraudulent transactions and robust retry mechanisms using DLQ.",
@@ -56,13 +70,106 @@ const projects = [
 
 const categories = ["all", "fintech", "hackathon", "platform"];
 
+const ProjectCard = ({
+  project,
+  onOpen,
+}: {
+  project: Project;
+  onOpen: (project: Project, index: number) => void;
+}) => {
+  const [previewIndex, setPreviewIndex] = useState(0);
+
+  return (
+    <div
+      onClick={() => onOpen(project, previewIndex)}
+      className="bg-[#181818] hover:bg-[#282828] transition-all duration-300 rounded-lg p-3 md:p-4 group cursor-pointer w-full overflow-hidden"
+    >
+      <div className="relative aspect-video mb-2 shadow-2xl overflow-hidden rounded-md bg-gradient-to-br from-[#333] to-[#121212] flex items-center justify-center border border-white/5">
+        {project.thumbnail ? (
+          <img
+            src={project.thumbnail}
+            alt={project.title}
+            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+          />
+        ) : (
+          <FolderKanban className="text-white/10 group-hover:scale-110 transition-transform duration-500" size={44} />
+        )}
+        <div className="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors duration-300" />
+
+        {/* Play button bottom right of image */}
+        {project.videos && project.videos.length > 0 && (
+          <button
+            className="absolute bottom-2 right-2 md:bottom-3 md:right-3 bg-primary hover:bg-[#1ed760] text-black p-2 rounded-full font-bold shadow-xl transition-all transform hover:scale-110 active:scale-95 group-hover:translate-y-0 translate-y-2 opacity-0 group-hover:opacity-100 flex items-center gap-1 z-10"
+          >
+             <Play className="fill-black w-3.5 h-3.5 md:w-4 md:h-4" size={16} />
+             <span className="text-[10px] md:text-xs font-bold pr-1">Play Video</span>
+          </button>
+        )}
+      </div>
+
+      {/* Minimised row for picking which clip to view */}
+      {project.videos.length > 1 && (
+        <div className="flex gap-1.5 mb-3 overflow-x-auto">
+          {project.videos.map((_, idx) => (
+            <button
+              key={idx}
+              type="button"
+              title={`View clip ${idx + 1}`}
+              onClick={(e) => {
+                e.stopPropagation();
+                setPreviewIndex(idx);
+              }}
+              className={`relative shrink-0 w-12 h-8 rounded overflow-hidden border transition-colors ${
+                idx === previewIndex ? "border-primary ring-1 ring-primary" : "border-white/10 hover:border-white/40"
+              }`}
+            >
+              <img src={project.thumbnail} alt="" className="w-full h-full object-cover opacity-60" />
+              <Play size={10} className="absolute inset-0 m-auto fill-white text-white" />
+            </button>
+          ))}
+        </div>
+      )}
+
+      <div className="flex flex-col gap-2 min-w-0 flex-1 overflow-hidden">
+        <h3 className="font-bold text-base md:text-lg text-white truncate group-hover:whitespace-normal transition-all">
+          {project.title}
+        </h3>
+        <p className="text-subdued text-xs line-clamp-2 leading-relaxed break-words">
+          <span className="text-white/40 font-semibold">Description: </span>
+          {project.description}
+        </p>
+        <a
+          href={project.github}
+          target="_blank"
+          rel="noreferrer"
+          onClick={(e) => e.stopPropagation()}
+          className="inline-flex items-center gap-1.5 text-xs text-white/60 hover:text-white w-fit"
+        >
+          <Github size={12} />
+          <span className="text-white/40 font-semibold">Github:</span>
+          <span className="underline">Repository</span>
+        </a>
+        {project.hasDetail !== false && (
+          <Link
+            to={`/projects/${project.slug}`}
+            onClick={(e) => e.stopPropagation()}
+            className="mt-2 inline-flex items-center gap-1.5 text-xs text-primary hover:underline w-fit"
+          >
+            <BookOpen size={12} /> View full system analysis
+          </Link>
+        )}
+      </div>
+    </div>
+  );
+};
+
 const Projects = () => {
-  const [selectedProject, setSelectedProject] = useState<typeof projects[0] | null>(null);
+  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const [currentVideoIndex, setCurrentVideoIndex] = useState(0);
 
-  const handleOpenVideo = (project: typeof projects[0]) => {
+  const handleOpenVideo = (project: Project, index = 0) => {
     setSelectedProject(project);
-    setCurrentVideoIndex(0);
+    setCurrentVideoIndex(index);
   };
 
   const handleNextVideo = () => {
@@ -104,53 +211,8 @@ const Projects = () => {
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-5">
                 {projects
                   .filter((p) => cat === "all" || p.category === cat)
-                  .map((project, i) => (
-                    <div
-                      key={project.title}
-                      onClick={() => handleOpenVideo(project)}
-                      className="bg-[#181818] hover:bg-[#282828] transition-all duration-300 rounded-lg p-3 md:p-4 group cursor-pointer w-full overflow-hidden"
-                    >
-                      <div className="relative aspect-video mb-3 md:mb-4 shadow-2xl overflow-hidden rounded-md bg-gradient-to-br from-[#333] to-[#121212] flex items-center justify-center border border-white/5">
-                        {project.thumbnail ? (
-                          <img 
-                            src={project.thumbnail} 
-                            alt={project.title}
-                            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                          />
-                        ) : (
-                          <FolderKanban className="text-white/10 group-hover:scale-110 transition-transform duration-500" size={44} />
-                        )}
-                        <div className="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors duration-300" />
-                        
-                        {/* Play button bottom right of image */}
-                        {project.videos && project.videos.length > 0 && (
-                          <button 
-                            className="absolute bottom-2 right-2 md:bottom-3 md:right-3 bg-primary hover:bg-[#1ed760] text-black p-2 rounded-full font-bold shadow-xl transition-all transform hover:scale-110 active:scale-95 group-hover:translate-y-0 translate-y-2 opacity-0 group-hover:opacity-100 flex items-center gap-1 z-10"
-                          >
-                             <Play className="fill-black w-3.5 h-3.5 md:w-4 md:h-4" size={16} />
-                             <span className="text-[10px] md:text-xs font-bold pr-1">Play Video</span>
-                          </button>
-                        )}
-                      </div>
-
-                      <div className="flex flex-col gap-2 min-w-0 flex-1 overflow-hidden">
-                        <h3 className="font-bold text-base md:text-lg text-white truncate group-hover:whitespace-normal transition-all">
-                          {project.title}
-                        </h3>
-                        <p className="text-subdued text-xs line-clamp-2 leading-relaxed break-words">
-                          {project.description}
-                        </p>
-                        {project.hasDetail !== false && (
-                          <Link
-                            to={`/projects/${project.slug}`}
-                            onClick={(e) => e.stopPropagation()}
-                            className="mt-2 inline-flex items-center gap-1.5 text-xs text-primary hover:underline w-fit"
-                          >
-                            <BookOpen size={12} /> View full system analysis
-                          </Link>
-                        )}
-                      </div>
-                    </div>
+                  .map((project) => (
+                    <ProjectCard key={project.title} project={project} onOpen={handleOpenVideo} />
                   ))}
               </div>
             </TabsContent>
