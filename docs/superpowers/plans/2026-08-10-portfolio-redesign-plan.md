@@ -243,6 +243,7 @@ Rather than hand-editing the ~83 places across 10 files that use Tailwind's lite
 **Files:**
 - Modify: `tailwind.config.ts`
 - Modify: `src/index.css`
+- Modify: `index.html` (pin to dark via a static class until Task 5's `ThemeProvider` takes over — see Step 3.5)
 
 **Interfaces:**
 - Produces: light theme CSS variables under `:root`, dark theme preserved verbatim under `.dark`, working `--glow`/`--glow-secondary`/`--surface-glass` tokens, and a `black`/`white` Tailwind color alias — all consumed by Task 4 (elevated-surface cleanup) and Task 5 (theme toggle).
@@ -379,6 +380,24 @@ Replace with:
 
 (This is now equivalent to the old `bg-black text-white` in dark mode thanks to Step 1's alias, but is the semantically correct root-level class.)
 
+- [ ] **Step 3.5: Pin the site to dark until Task 5 adds theme switching**
+
+Nothing applies the `.dark` class to `<html>` yet — that's Task 5's job (`next-themes`' `ThemeProvider`). Without it, bare `:root` (now the light theme values) is what actually renders, which would flip the site to light for every commit between this task and Task 5. Pin it to dark for now.
+
+In `index.html`, find:
+
+```html
+<html lang="en">
+```
+
+Replace with:
+
+```html
+<html lang="en" class="dark">
+```
+
+Task 5 will remove this static class once `ThemeProvider` takes over managing it dynamically (documented there).
+
 - [ ] **Step 4: Verify no visual change in the default (dark) theme**
 
 Run: `bun run build && bun run dev`
@@ -393,7 +412,7 @@ Expected: PASS, no errors.
 - [ ] **Step 6: Commit**
 
 ```bash
-git add tailwind.config.ts src/index.css
+git add tailwind.config.ts src/index.css index.html
 git commit -m "feat: add light theme tokens, fix dead glow/glass tokens, alias black/white for theme-awareness"
 ```
 
@@ -580,6 +599,7 @@ git commit -m "refactor: replace hardcoded elevated-surface hex colors with sema
 - Create: `src/components/ThemeToggle.test.tsx`
 - Modify: `src/App.tsx`
 - Modify: `src/pages/Index.tsx`
+- Modify: `index.html` (remove the static `class="dark"` pin added in Task 3, now that `ThemeProvider` manages it — see Step 5.5)
 
 **Interfaces:**
 - Consumes: light/dark CSS tokens from Task 3.
@@ -717,6 +737,22 @@ const App = () => (
 );
 ```
 
+- [ ] **Step 5.5: Remove the static dark-class pin from index.html**
+
+Task 3 added `class="dark"` directly on `<html>` as a temporary pin, since nothing applied it dynamically yet. `next-themes`' `ThemeProvider` (just wired in Step 5) now manages that class at runtime — the static one is redundant and must go, or it will fight with `next-themes` when a visitor switches to light.
+
+In `index.html`, find:
+
+```html
+<html lang="en" class="dark">
+```
+
+Replace with:
+
+```html
+<html lang="en">
+```
+
 - [ ] **Step 6: Mount ThemeToggle in the Index.tsx header**
 
 In `src/pages/Index.tsx`, add the import (after the `lucide-react` import):
@@ -774,7 +810,7 @@ Expected: PASS.
 - [ ] **Step 9: Commit**
 
 ```bash
-git add src/components/ThemeToggle.tsx src/components/ThemeToggle.test.tsx src/App.tsx src/pages/Index.tsx
+git add src/components/ThemeToggle.tsx src/components/ThemeToggle.test.tsx src/App.tsx src/pages/Index.tsx index.html
 git commit -m "feat: add dark/light theme toggle via next-themes"
 ```
 
