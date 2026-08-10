@@ -600,6 +600,7 @@ git commit -m "refactor: replace hardcoded elevated-surface hex colors with sema
 - Modify: `src/App.tsx`
 - Modify: `src/pages/Index.tsx`
 - Modify: `index.html` (remove the static `class="dark"` pin added in Task 3, now that `ThemeProvider` manages it — see Step 5.5)
+- Modify: `src/index.css` (make `.text-subdued` theme-aware — see Step 6.5)
 
 **Interfaces:**
 - Consumes: light/dark CSS tokens from Task 3.
@@ -796,11 +797,33 @@ Replace with:
             </header>
 ```
 
+- [ ] **Step 6.5: Make .text-subdued theme-aware**
+
+Caught during Task 4's review: `.text-subdued` in `src/index.css` is still a hardcoded hex with no light-mode branch, unlike every other color in the design system. Left as-is, subdued text (used across About, Education, AppSidebar, Projects, Index, and more) would stay dark-mode-gray in light mode — likely a real readability problem on the new light background, and now that the theme toggle exists in this task, it's finally possible to actually see and verify the fix.
+
+In `src/index.css`, find:
+
+```css
+  .text-subdued {
+    @apply text-[#b3b3b3];
+  }
+```
+
+Replace with:
+
+```css
+  .text-subdued {
+    @apply text-muted-foreground;
+  }
+```
+
+`--muted-foreground` is already defined per-theme from Task 3 (`0 0% 35%` light, `0 0% 70%` dark) — in dark mode this renders effectively the same subdued gray as before (verify no visible change there), and in light mode it now resolves to a readable dark gray instead of staying stuck at the dark-mode-only `#b3b3b3`.
+
 - [ ] **Step 7: Manually verify both themes render correctly end-to-end**
 
 Run: `bun run dev`
 
-Open `http://localhost:8080`. Confirm: page loads dark (identical to before this plan). Click the new theme toggle in the header — the whole page (background, headings, body text, sidebar, cards) switches to the light palette from Task 3, and the toggle icon switches from moon to sun. Reload the page — it stays light (persisted). Click again to switch back to dark. Stop the dev server.
+Open `http://localhost:8080`. Confirm: page loads dark (identical to before this plan). Click the new theme toggle in the header — the whole page (background, headings, body text, sidebar, cards) switches to the light palette from Task 3, and the toggle icon switches from moon to sun. Specifically check subdued/muted text (section subtitles, card metadata) is legible in both themes, not the same fixed gray in both. Reload the page — it stays light (persisted). Click again to switch back to dark. Stop the dev server.
 
 - [ ] **Step 8: Run the full test suite and type checker**
 
@@ -810,7 +833,7 @@ Expected: PASS.
 - [ ] **Step 9: Commit**
 
 ```bash
-git add src/components/ThemeToggle.tsx src/components/ThemeToggle.test.tsx src/App.tsx src/pages/Index.tsx index.html
+git add src/components/ThemeToggle.tsx src/components/ThemeToggle.test.tsx src/App.tsx src/pages/Index.tsx index.html src/index.css
 git commit -m "feat: add dark/light theme toggle via next-themes"
 ```
 
