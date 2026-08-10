@@ -102,7 +102,7 @@ const Experience = () => {
                   >
                     <div className="w-8 flex items-center justify-center relative flex-shrink-0">
                       <span className={cn(
-                        "text-[#B3B3B3] text-[14px] md:text-[16px] font-normal group-hover:opacity-0 transition-opacity",
+                        "text-subdued text-[14px] md:text-[16px] font-normal group-hover:opacity-0 transition-opacity",
                         isExpanded && "opacity-0"
                       )}>
                         {i + 1}
@@ -118,7 +118,7 @@ const Experience = () => {
                     
                     <div className="flex items-center gap-3 md:gap-5 min-w-0 pr-2 h-full">
                        {/* Company Logo Box */}
-                       <div className="w-10 h-10 md:w-14 md:h-14 bg-[#1e1e1e] rounded-md flex-shrink-0 flex items-center justify-center border border-white/10 overflow-hidden shadow-2xl group-hover:border-white/20 transition-colors">
+                       <div className="w-10 h-10 md:w-14 md:h-14 bg-secondary rounded-md flex-shrink-0 flex items-center justify-center border border-white/10 overflow-hidden shadow-2xl group-hover:border-white/20 transition-colors">
                           {exp.logo ? (
                             <img src={exp.logo} alt={exp.company} className="w-full h-full object-contain p-1" />
                           ) : (
@@ -133,21 +133,21 @@ const Experience = () => {
                          )}>
                            {exp.role}
                          </span>
-                         <span className="text-[11px] md:text-[13px] text-[#B3B3B3] font-normal truncate mt-1">
+                         <span className="text-[11px] md:text-[13px] text-subdued font-normal truncate mt-1">
                            {exp.company}
                          </span>
                        </div>
                     </div>
 
-                    <span className="hidden md:flex items-center text-[#B3B3B3] text-[13px] font-normal truncate gap-2">
+                    <span className="hidden md:flex items-center text-subdued text-[13px] font-normal truncate gap-2">
                       {exp.location}
                     </span>
 
-                    <span className="hidden md:block text-[#B3B3B3] text-[13px] font-normal">
+                    <span className="hidden md:block text-subdued text-[13px] font-normal">
                       {exp.type}
                     </span>
 
-                    <div className="flex items-center justify-end gap-3 text-[#B3B3B3]">
+                    <div className="flex items-center justify-end gap-3 text-subdued">
                       <span className="text-[10px] md:text-[13px] font-normal whitespace-nowrap text-right pr-2">
                         {exp.period}
                       </span>
@@ -163,7 +163,7 @@ const Experience = () => {
                   {/* Expanded Description */}
                   {isExpanded && (
                     <div className="px-10 md:px-20 py-6 bg-white/[0.02] border-t border-white/5 animate-in slide-in-from-top-2 duration-300">
-                      <p className="text-[#B3B3B3] text-sm md:text-base leading-relaxed max-w-4xl whitespace-pre-line">
+                      <p className="text-subdued text-sm md:text-base leading-relaxed max-w-4xl whitespace-pre-line">
                         {exp.description}
                       </p>
                     </div>

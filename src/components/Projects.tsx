@@ -124,9 +124,9 @@ const ProjectCard = ({
   return (
     <div
       onClick={() => onOpen(project, previewIndex)}
-      className="bg-[#181818] hover:bg-[#282828] transition-all duration-300 rounded-lg p-3 md:p-4 group cursor-pointer w-full overflow-hidden"
+      className="bg-card hover:bg-accent transition-all duration-300 rounded-lg p-3 md:p-4 group cursor-pointer w-full overflow-hidden"
     >
-      <div className="relative aspect-video mb-2 shadow-2xl overflow-hidden rounded-md bg-gradient-to-br from-[#333] to-[#121212] flex items-center justify-center border border-white/5">
+      <div className="relative aspect-video mb-2 shadow-2xl overflow-hidden rounded-md bg-gradient-to-br from-muted to-background flex items-center justify-center border border-white/5">
         {project.thumbnail ? (
           <img
             src={project.thumbnail}
@@ -141,7 +141,7 @@ const ProjectCard = ({
         {/* Play button bottom right of image */}
         {project.videos && project.videos.length > 0 && (
           <button
-            className="absolute bottom-2 right-2 md:bottom-3 md:right-3 bg-primary hover:bg-[#1ed760] text-black p-2 rounded-full font-bold shadow-xl transition-all transform hover:scale-110 active:scale-95 group-hover:translate-y-0 translate-y-2 opacity-0 group-hover:opacity-100 flex items-center gap-1 z-10"
+            className="absolute bottom-2 right-2 md:bottom-3 md:right-3 bg-primary hover:bg-primary/90 text-black p-2 rounded-full font-bold shadow-xl transition-all transform hover:scale-110 active:scale-95 group-hover:translate-y-0 translate-y-2 opacity-0 group-hover:opacity-100 flex items-center gap-1 z-10"
           >
              <Play className="fill-black w-3.5 h-3.5 md:w-4 md:h-4" size={16} />
              <span className="text-[10px] md:text-xs font-bold pr-1">Play Video</span>
@@ -256,7 +256,7 @@ const Projects = () => {
               <TabsTrigger
                 key={cat}
                 value={cat}
-                className="rounded-full px-3 md:px-4 py-1 md:py-1.5 bg-[#2a2a2a] text-white data-[state=active]:bg-white data-[state=active]:text-black border-none text-[10px] md:text-xs"
+                className="rounded-full px-3 md:px-4 py-1 md:py-1.5 bg-secondary text-white data-[state=active]:bg-white data-[state=active]:text-black border-none text-[10px] md:text-xs"
               >
                 {categoryLabels[cat] ?? cat}
               </TabsTrigger>

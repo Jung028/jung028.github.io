@@ -131,12 +131,12 @@ const ProjectDetail = () => {
   };
 
   return (
-    <div className="h-screen flex bg-[#191919] text-white overflow-hidden">
+    <div className="h-screen flex bg-background text-white overflow-hidden">
       {/* Sidebar */}
       <aside
         className={`${
           sidebarOpen ? "w-64" : "w-0"
-        } shrink-0 transition-all duration-200 bg-[#202020] border-r border-white/5 overflow-hidden`}
+        } shrink-0 transition-all duration-200 bg-card border-r border-white/5 overflow-hidden`}
       >
         <div className="w-64 h-full flex flex-col">
           <div className="px-4 py-3 border-b border-white/5">
@@ -188,7 +188,7 @@ const ProjectDetail = () => {
 
       {/* Main */}
       <div className="flex-1 flex flex-col min-w-0">
-        <header className="shrink-0 flex items-center gap-3 px-4 py-2 bg-[#202020] border-b border-white/5">
+        <header className="shrink-0 flex items-center gap-3 px-4 py-2 bg-card border-b border-white/5">
           <button
             onClick={() => setSidebarOpen((v) => !v)}
             className="p-1 rounded hover:bg-white/10 text-white/70 hover:text-white"
@@ -198,7 +198,7 @@ const ProjectDetail = () => {
           </button>
           <h1 className="text-sm font-medium truncate">{activePage?.title}</h1>
         </header>
-        <main className="flex-1 flex flex-col min-h-0 bg-[#191919]">
+        <main className="flex-1 flex flex-col min-h-0 bg-background">
           <div className="flex-1 relative min-h-0">
             {!loaded && (
               <div className="absolute inset-0 flex items-center justify-center text-white/40 text-sm">
@@ -221,7 +221,7 @@ const ProjectDetail = () => {
           </div>
 
           {activePage?.videos && activePage.videos.length > 0 && (
-            <div className="shrink-0 border-t border-white/5 bg-[#202020] px-4 max-h-60 overflow-y-auto">
+            <div className="shrink-0 border-t border-white/5 bg-card px-4 max-h-60 overflow-y-auto">
               <Accordion type="single" collapsible>
                 <AccordionItem value="integration-tests" className="border-none">
                   <AccordionTrigger className="text-sm text-white/80 hover:no-underline py-3">
