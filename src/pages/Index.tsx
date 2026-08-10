@@ -7,6 +7,7 @@ import Projects from "@/components/Projects";
 import Experience from "@/components/Experience";
 import Footer from "@/components/Footer";
 import { FileDown, Github, Linkedin } from "lucide-react";
+import { ThemeToggle } from "@/components/ThemeToggle";
 
 const Index = () => {
   return (
@@ -54,6 +55,8 @@ const Index = () => {
                 >
                   <Linkedin size={20} />
                 </a>
+                <div className="h-4 w-[1px] bg-white/20 hidden sm:block"></div>
+                <ThemeToggle />
               </div>
             </header>
             

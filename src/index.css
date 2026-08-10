@@ -120,7 +120,7 @@
   }
 
   .text-subdued {
-    @apply text-[#b3b3b3];
+    @apply text-muted-foreground;
   }
 }
 
