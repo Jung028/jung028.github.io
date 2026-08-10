@@ -601,10 +601,55 @@ git commit -m "refactor: replace hardcoded elevated-surface hex colors with sema
 - Modify: `src/pages/Index.tsx`
 - Modify: `index.html` (remove the static `class="dark"` pin added in Task 3, now that `ThemeProvider` manages it — see Step 5.5)
 - Modify: `src/index.css` (make `.text-subdued` theme-aware — see Step 6.5)
+- Modify: `src/test/setup.ts` (add a localStorage polyfill for the test environment — see Step 0.5)
 
 **Interfaces:**
 - Consumes: light/dark CSS tokens from Task 3.
 - Produces: `<ThemeToggle />` component; `next-themes`' `ThemeProvider` wrapping the app tree — consumed by Task 6 (`CommandPalette`'s theme-toggle action uses `useTheme()` directly, requiring `ThemeProvider` to already be in the tree).
+
+- [ ] **Step 0.5: Add a localStorage polyfill to the test environment**
+
+In this Bun 1.3.14 + Vitest + jsdom combination, the global `localStorage` resolves to a completely non-functional stub (a plain object with no `setItem`/`getItem`/`clear` — confirmed via a diagnostic test: `typeof localStorage.clear` is `undefined`, `Object.keys(localStorage)` is `[]`, and the constructor is `undefined`). This isn't jsdom's real Storage implementation and isn't caused by any code in this task — it's an environment gap, exactly like the existing `matchMedia` stub already in this file for the same class of reason. `next-themes` (used by `ThemeToggle` below) reads/writes `localStorage` for persistence, so tests exercising it need a working one.
+
+In `src/test/setup.ts`, append after the existing `matchMedia` stub:
+
+```ts
+class MockLocalStorage {
+  private store = new Map<string, string>();
+  getItem(key: string) {
+    return this.store.has(key) ? this.store.get(key)! : null;
+  }
+  setItem(key: string, value: string) {
+    this.store.set(key, String(value));
+  }
+  removeItem(key: string) {
+    this.store.delete(key);
+  }
+  clear() {
+    this.store.clear();
+  }
+  key(index: number) {
+    return Array.from(this.store.keys())[index] ?? null;
+  }
+  get length() {
+    return this.store.size;
+  }
+}
+
+const mockLocalStorage = new MockLocalStorage();
+Object.defineProperty(window, "localStorage", {
+  writable: true,
+  configurable: true,
+  value: mockLocalStorage,
+});
+Object.defineProperty(globalThis, "localStorage", {
+  writable: true,
+  configurable: true,
+  value: mockLocalStorage,
+});
+```
+
+Run `bun run test` and confirm `ThemeToggle.test.tsx`'s three tests (written in Step 1 below) now pass — they were failing with `localStorage.clear is not a function` before this polyfill existed.
 
 - [ ] **Step 1: Write the failing test for ThemeToggle**
 
@@ -833,7 +878,7 @@ Expected: PASS.
 - [ ] **Step 9: Commit**
 
 ```bash
-git add src/components/ThemeToggle.tsx src/components/ThemeToggle.test.tsx src/App.tsx src/pages/Index.tsx index.html src/index.css
+git add src/components/ThemeToggle.tsx src/components/ThemeToggle.test.tsx src/App.tsx src/pages/Index.tsx index.html src/index.css src/test/setup.ts
 git commit -m "feat: add dark/light theme toggle via next-themes"
 ```
 
