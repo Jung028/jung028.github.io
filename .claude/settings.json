@@ -6,7 +6,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bun run build && bun run test && bunx tsc --noEmit"
+            "command": "bun run build && bun run test && bunx tsc --noEmit -p tsconfig.app.json && bunx tsc --noEmit -p tsconfig.node.json"
           }
         ]
       }
