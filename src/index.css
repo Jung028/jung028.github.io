@@ -112,7 +112,7 @@
 
 @layer utilities {
   .spotify-card {
-    @apply bg-[#181818] hover:bg-[#282828] transition-all duration-300 rounded-lg p-4;
+    @apply bg-card hover:bg-accent transition-all duration-300 rounded-lg p-4;
   }
   
   .spotify-gradient {
