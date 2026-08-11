@@ -1,8 +1,11 @@
 import { useState } from "react";
+import { motion } from "motion/react";
 import { ExternalLink, Github, FolderKanban, Play, ChevronLeft, ChevronRight, BookOpen } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Dialog, DialogContent, DialogTitle, DialogDescription } from "@/components/ui/dialog";
+import { fadeInUp, staggerContainer } from "@/lib/motion-variants";
+import { useReducedMotion } from "@/hooks/useReducedMotion";
 
 // Project assets
 import ipayThumbnail from "@/assets/Projects/ipay/thumbnail.png";
@@ -224,6 +227,7 @@ const ProjectCard = ({
 const Projects = () => {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const [currentVideoIndex, setCurrentVideoIndex] = useState(0);
+  const reduceMotion = useReducedMotion();
 
   const handleOpenVideo = (project: Project, index = 0) => {
     setSelectedProject(project);
@@ -266,13 +270,21 @@ const Projects = () => {
 
           {categories.map((cat) => (
             <TabsContent key={cat} value={cat} className="mt-0">
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-5">
+              <motion.div
+                className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-5"
+                initial={reduceMotion ? "visible" : "hidden"}
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.2 }}
+                variants={staggerContainer}
+              >
                 {projects
                   .filter((p) => cat === "all" || p.category === cat)
                   .map((project) => (
-                    <ProjectCard key={project.title} project={project} onOpen={handleOpenVideo} />
+                    <motion.div key={project.title} variants={fadeInUp}>
+                      <ProjectCard project={project} onOpen={handleOpenVideo} />
+                    </motion.div>
                   ))}
-              </div>
+              </motion.div>
             </TabsContent>
           ))}
         </Tabs>

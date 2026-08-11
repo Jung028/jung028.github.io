@@ -1,6 +1,9 @@
 import { useState } from "react";
+import { motion } from "motion/react";
 import { Clock3, Play, ChevronDown, ChevronUp, Briefcase } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { fadeInUp, staggerContainer } from "@/lib/motion-variants";
+import { useReducedMotion } from "@/hooks/useReducedMotion";
 
 import antLogo from "@/assets/CareerTracksIcons/ant_international_logo.jpeg";
 import logiflowLogo from "@/assets/CareerTracksIcons/logiflow_automation.png";
@@ -67,6 +70,7 @@ const experiences = [
 
 const Experience = () => {
   const [expandedIndex, setExpandedIndex] = useState<number | null>(null);
+  const reduceMotion = useReducedMotion();
 
   const toggleExpand = (index: number) => {
     setExpandedIndex(expandedIndex === index ? null : index);
@@ -91,11 +95,17 @@ const Experience = () => {
           </div>
 
           {/* List */}
-          <div className="flex flex-col bg-black">
+          <motion.div
+            className="flex flex-col bg-black"
+            initial={reduceMotion ? "visible" : "hidden"}
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.2 }}
+            variants={staggerContainer}
+          >
             {experiences.map((exp, i) => {
               const isExpanded = expandedIndex === i;
               return (
-                <div key={i} className="border-b border-white/5 last:border-0">
+                <motion.div key={i} variants={fadeInUp} className="border-b border-white/5 last:border-0">
                   <div
                     onClick={() => toggleExpand(i)}
                     className="grid grid-cols-[25px_1.5fr_1fr_0.8fr] md:grid-cols-[40px_2fr_1.5fr_1fr_1fr] gap-2 md:gap-4 px-3 md:px-4 py-4 hover:bg-white/5 transition-all group cursor-pointer items-center overflow-hidden min-h-[72px] md:min-h-[88px]"
@@ -168,10 +178,10 @@ const Experience = () => {
                       </p>
                     </div>
                   )}
-                </div>
+                </motion.div>
               );
             })}
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>
