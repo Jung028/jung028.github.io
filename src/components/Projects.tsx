@@ -124,6 +124,7 @@ const ProjectCard = ({
   return (
     <div
       onClick={() => onOpen(project, previewIndex)}
+      data-cursor-hover
       className="bg-card hover:bg-accent transition-all duration-300 rounded-lg p-3 md:p-4 group cursor-pointer w-full overflow-hidden"
     >
       <div className="relative aspect-video mb-2 shadow-2xl overflow-hidden rounded-md bg-gradient-to-br from-muted to-background flex items-center justify-center border border-white/5">

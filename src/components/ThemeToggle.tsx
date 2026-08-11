@@ -10,6 +10,7 @@ export const ThemeToggle = () => {
       type="button"
       onClick={() => setTheme(isDark ? "light" : "dark")}
       aria-label={isDark ? "Switch to light theme" : "Switch to dark theme"}
+      data-cursor-hover
       className="flex items-center justify-center w-8 h-8 rounded-full bg-white/10 hover:bg-white/20 text-white transition-all border border-white/10"
     >
       {isDark ? <Sun size={16} /> : <Moon size={16} />}

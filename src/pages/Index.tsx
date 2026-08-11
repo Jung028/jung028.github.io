@@ -27,9 +27,10 @@ const Index = () => {
               </div>
               
               <div className="flex items-center gap-3 md:gap-5">
-                <a 
-                  href="/resume.pdf" 
-                  download 
+                <a
+                  href="/resume.pdf"
+                  download
+                  data-cursor-hover
                   className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/10 hover:bg-white/20 text-white text-xs font-bold transition-all border border-white/10"
                   title="Download Resume"
                 >
@@ -37,19 +38,21 @@ const Index = () => {
                   <span className="hidden sm:inline">Resume</span>
                 </a>
                 <div className="h-4 w-[1px] bg-white/20 hidden sm:block"></div>
-                <a 
-                  href="https://github.com/Jung028" 
-                  target="_blank" 
+                <a
+                  href="https://github.com/Jung028"
+                  target="_blank"
                   rel="noopener noreferrer"
+                  data-cursor-hover
                   className="text-subdued hover:text-white transition-colors"
                   title="GitHub"
                 >
                   <Github size={20} />
                 </a>
-                <a 
-                  href="https://www.linkedin.com/in/adam-lim-4247481a5/" 
-                  target="_blank" 
+                <a
+                  href="https://www.linkedin.com/in/adam-lim-4247481a5/"
+                  target="_blank"
                   rel="noopener noreferrer"
+                  data-cursor-hover
                   className="text-subdued hover:text-white transition-colors"
                   title="LinkedIn"
                 >

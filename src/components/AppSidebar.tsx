@@ -73,7 +73,7 @@ export function AppSidebar() {
               {items.map((item) => (
                 <SidebarMenuItem key={item.title} className="mb-1">
                   <SidebarMenuButton asChild tooltip={item.title} className="h-auto py-2 px-3 hover:bg-white/10 rounded-md transition-all group/btn">
-                    <a href={item.url} onClick={handleLinkClick} className="flex items-center gap-4">
+                    <a href={item.url} onClick={handleLinkClick} data-cursor-hover className="flex items-center gap-4">
                       <item.icon className="size-5 text-subdued group-hover/btn:text-white transition-colors" />
                       <div className="flex flex-col group-data-[collapsible=icon]:hidden">
                         <span className="text-[15px] font-bold text-white leading-tight">{item.title}</span>

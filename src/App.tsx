@@ -5,6 +5,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { ThemeProvider } from "next-themes";
 import { CommandPalette } from "@/components/CommandPalette";
+import { CustomCursor } from "@/components/CustomCursor";
 import Index from "./pages/Index.tsx";
 import NotFound from "./pages/NotFound.tsx";
 import ProjectDetail from "./pages/ProjectDetail.tsx";
@@ -18,6 +19,7 @@ const App = () => (
         <Toaster />
         <Sonner />
         <BrowserRouter>
+          <CustomCursor />
           <CommandPalette />
           <Routes>
             <Route path="/" element={<Index />} />

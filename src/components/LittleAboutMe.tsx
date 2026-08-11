@@ -149,6 +149,7 @@ const LittleAboutMe = () => {
             {facts.map((fact, i) => (
               <div
                 key={i}
+                data-cursor-hover
                 className="group/card flex-shrink-0 snap-start relative overflow-hidden rounded-xl w-52 md:w-64 h-72 md:h-80 cursor-pointer"
               >
                 <img
