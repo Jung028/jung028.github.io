@@ -72,6 +72,13 @@ export const CommandPalette = () => {
       navigate(`/#${id}`);
       return;
     }
+    if (id === "hero") {
+      // The hero section has no DOM id (see src/components/Hero.tsx), so
+      // "Home" means "scroll to the top of the page" rather than jumping to
+      // a specific element.
+      window.scrollTo({ top: 0, behavior: "smooth" });
+      return;
+    }
     document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
   };
 

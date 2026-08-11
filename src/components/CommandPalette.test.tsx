@@ -1,4 +1,4 @@
-import { describe, it, expect, beforeEach, beforeAll } from "vitest";
+import { describe, it, expect, beforeEach, beforeAll, vi } from "vitest";
 import { render, screen, fireEvent, waitFor } from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";
 import { ThemeProvider } from "next-themes";
@@ -34,6 +34,10 @@ function renderPalette() {
 describe("CommandPalette", () => {
   beforeEach(() => {
     document.documentElement.className = "";
+    // jsdom does not implement window.scrollTo; stub it so we can assert
+    // on calls (the "Home" item scrolls to the top instead of jumping to
+    // a nonexistent element id — see CommandPalette.tsx's jumpToSection).
+    window.scrollTo = vi.fn();
   });
 
   it("opens on Cmd+K", async () => {
@@ -58,6 +62,16 @@ describe("CommandPalette", () => {
     fireEvent.click(item);
     await waitFor(() => {
       expect(screen.queryByPlaceholderText(/jump to a section/i)).not.toBeInTheDocument();
+    });
+  });
+
+  it("scrolls to the top of the page when Home is selected", async () => {
+    renderPalette();
+    fireEvent.keyDown(document, { key: "k", metaKey: true });
+    const item = await screen.findByText("Home");
+    fireEvent.click(item);
+    await waitFor(() => {
+      expect(window.scrollTo).toHaveBeenCalledWith({ top: 0, behavior: "smooth" });
     });
   });
 });
