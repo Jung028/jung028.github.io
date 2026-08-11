@@ -1,5 +1,6 @@
 import { useRef, useState, useEffect } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import { GithubStatsCard } from "@/components/GithubStatsCard";
 
 import antPhoto1 from "@/assets/LittleAboutMe/ant_intl_1.jpeg";
 import antPhoto2 from "@/assets/LittleAboutMe/ant_intl2.jpeg";
@@ -175,6 +176,8 @@ const LittleAboutMe = () => {
             ))}
           </div>
         </div>
+
+        <GithubStatsCard />
       </div>
     </section>
   );
