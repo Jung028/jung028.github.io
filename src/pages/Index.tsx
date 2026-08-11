@@ -1,3 +1,5 @@
+import { useEffect } from "react";
+import { useLocation } from "react-router-dom";
 import { SidebarProvider, SidebarTrigger, SidebarInset } from "@/components/ui/sidebar";
 import { AppSidebar } from "@/components/AppSidebar";
 import Hero from "@/components/Hero";
@@ -7,8 +9,18 @@ import Projects from "@/components/Projects";
 import Experience from "@/components/Experience";
 import Footer from "@/components/Footer";
 import { FileDown, Github, Linkedin } from "lucide-react";
+import { ThemeToggle } from "@/components/ThemeToggle";
 
 const Index = () => {
+  const location = useLocation();
+
+  useEffect(() => {
+    if (location.hash) {
+      const id = location.hash.slice(1);
+      document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+    }
+  }, [location.hash]);
+
   return (
     <SidebarProvider>
       <div className="flex min-h-screen w-full bg-background overflow-x-hidden">
@@ -26,9 +38,10 @@ const Index = () => {
               </div>
               
               <div className="flex items-center gap-3 md:gap-5">
-                <a 
-                  href="/resume.pdf" 
-                  download 
+                <a
+                  href="/resume.pdf"
+                  download
+                  data-cursor-hover
                   className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/10 hover:bg-white/20 text-white text-xs font-bold transition-all border border-white/10"
                   title="Download Resume"
                 >
@@ -36,24 +49,28 @@ const Index = () => {
                   <span className="hidden sm:inline">Resume</span>
                 </a>
                 <div className="h-4 w-[1px] bg-white/20 hidden sm:block"></div>
-                <a 
-                  href="https://github.com/Jung028" 
-                  target="_blank" 
+                <a
+                  href="https://github.com/Jung028"
+                  target="_blank"
                   rel="noopener noreferrer"
+                  data-cursor-hover
                   className="text-subdued hover:text-white transition-colors"
                   title="GitHub"
                 >
                   <Github size={20} />
                 </a>
-                <a 
-                  href="https://www.linkedin.com/in/adam-lim-4247481a5/" 
-                  target="_blank" 
+                <a
+                  href="https://www.linkedin.com/in/adam-lim-4247481a5/"
+                  target="_blank"
                   rel="noopener noreferrer"
+                  data-cursor-hover
                   className="text-subdued hover:text-white transition-colors"
                   title="LinkedIn"
                 >
                   <Linkedin size={20} />
                 </a>
+                <div className="h-4 w-[1px] bg-white/20 hidden sm:block"></div>
+                <ThemeToggle />
               </div>
             </header>
             

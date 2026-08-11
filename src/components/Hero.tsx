@@ -8,7 +8,7 @@ const Hero = () => {
     <section className="relative pt-10 md:pt-20 pb-10 md:pb-16 px-4 md:px-10 overflow-hidden bg-gradient-to-b from-[#45362E] to-black">
       <div className="relative z-10 flex flex-col md:flex-row items-center md:items-end gap-6 md:gap-8 animate-fade-in">
         {/* Large Circular Artist Image */}
-        <div className="w-40 h-40 md:w-64 md:h-64 rounded-full shadow-2xl flex-shrink-0 flex items-center justify-center border-4 border-black/20 overflow-hidden bg-[#282828]">
+        <div className="w-40 h-40 md:w-64 md:h-64 rounded-full shadow-2xl flex-shrink-0 flex items-center justify-center border-4 border-black/20 overflow-hidden bg-secondary">
             <img 
               src={profileImg} 
               alt="Adam Lim" 

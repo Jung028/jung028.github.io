@@ -49,7 +49,7 @@ const Education = () => {
                   {i + 1}
                 </span>
                 <div className="flex items-center gap-4 overflow-hidden">
-                   <div className="w-10 h-10 bg-[#282828] rounded flex items-center justify-center flex-shrink-0 group-hover:bg-[#333]">
+                   <div className="w-10 h-10 bg-secondary rounded flex items-center justify-center flex-shrink-0 group-hover:bg-accent">
                      <GraduationCap size={20} className="text-subdued group-hover:text-white" />
                    </div>
                    <div className="flex flex-col overflow-hidden">

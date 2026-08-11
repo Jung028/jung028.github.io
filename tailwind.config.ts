@@ -52,6 +52,8 @@ export default {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
+        black: "hsl(var(--background))",
+        white: "hsl(var(--foreground))",
         glow: "hsl(var(--glow))",
         "glow-secondary": "hsl(var(--glow-secondary))",
         sidebar: {

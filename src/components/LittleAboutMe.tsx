@@ -1,5 +1,9 @@
 import { useRef, useState, useEffect } from "react";
+import { motion } from "motion/react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import { GithubStatsCard } from "@/components/GithubStatsCard";
+import { fadeInUp, staggerContainer } from "@/lib/motion-variants";
+import { useReducedMotion } from "@/hooks/useReducedMotion";
 
 import antPhoto1 from "@/assets/LittleAboutMe/ant_intl_1.jpeg";
 import antPhoto2 from "@/assets/LittleAboutMe/ant_intl2.jpeg";
@@ -86,6 +90,7 @@ const LittleAboutMe = () => {
   const scrollRef = useRef<HTMLDivElement>(null);
   const [showLeftArrow, setShowLeftArrow] = useState(false);
   const [showRightArrow, setShowRightArrow] = useState(true);
+  const reduceMotion = useReducedMotion();
   const scroll = (direction: "left" | "right") => {
     if (scrollRef.current) {
       scrollRef.current.scrollBy({
@@ -142,13 +147,19 @@ const LittleAboutMe = () => {
           )}
 
           {/* Scroll track */}
-          <div
+          <motion.div
             ref={scrollRef}
             className="flex overflow-x-auto gap-4 md:gap-5 pb-4 scrollbar-hide snap-x snap-mandatory scroll-smooth px-8 md:px-12"
+            initial={reduceMotion ? "visible" : "hidden"}
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.1 }}
+            variants={staggerContainer}
           >
             {facts.map((fact, i) => (
-              <div
+              <motion.div
                 key={i}
+                variants={fadeInUp}
+                data-cursor-hover
                 className="group/card flex-shrink-0 snap-start relative overflow-hidden rounded-xl w-52 md:w-64 h-72 md:h-80 cursor-pointer"
               >
                 <img
@@ -170,10 +181,12 @@ const LittleAboutMe = () => {
                   <p className="text-white font-semibold text-xs md:text-sm leading-snug mb-1">{fact.title}</p>
                   <p className="text-white/75 text-[11px] md:text-xs leading-relaxed">{fact.description}</p>
                 </div>
-              </div>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
+
+        <GithubStatsCard />
       </div>
     </section>
   );
