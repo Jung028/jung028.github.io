@@ -39,7 +39,7 @@ const Index = () => {
               
               <div className="flex items-center gap-3 md:gap-5">
                 <a
-                  href="/resume.pdf"
+                  href="/resume_2.pdf"
                   download
                   data-cursor-hover
                   className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/10 hover:bg-white/20 text-white text-xs font-bold transition-all border border-white/10"

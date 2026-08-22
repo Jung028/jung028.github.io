@@ -41,7 +41,7 @@ const PROJECT_ITEMS = [
 const EXTERNAL_LINKS = [
   { label: "GitHub", url: "https://github.com/Jung028", icon: Github },
   { label: "LinkedIn", url: "https://www.linkedin.com/in/adam-lim-4247481a5/", icon: Linkedin },
-  { label: "Download Resume", url: "/resume.pdf", icon: FileDown },
+  { label: "Download Resume", url: "/resume_2.pdf", icon: FileDown },
   { label: "Email", url: "mailto:aedamjung@gmail.com", icon: Mail },
 ];
 
