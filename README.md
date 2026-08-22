@@ -61,3 +61,7 @@ Project data lives in `src/components/Projects.tsx` in the `projects` array — 
 ## Deployment
 
 Pushing to `main` triggers `.github/workflows/static.yml`, which builds the site (`npm run build` in CI) and deploys the `dist/` output to GitHub Pages automatically. No manual deploy step is needed.
+
+Future Improvement
+
+- 
