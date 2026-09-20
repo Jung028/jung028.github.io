@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion } from "motion/react";
-import { ExternalLink, Github, FolderKanban, Play, ChevronLeft, ChevronRight, BookOpen } from "lucide-react";
+import { ExternalLink, Github, FolderKanban, Play, Images, ChevronLeft, ChevronRight, BookOpen } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Dialog, DialogContent, DialogTitle, DialogDescription } from "@/components/ui/dialog";
@@ -20,12 +20,26 @@ import tracelyThumbnail from "@/assets/Projects/tracely/thumbnail.png";
 import sundogThumbnail from "@/assets/Projects/sundog/thumbnail.png";
 import sundogVideo from "@/assets/Projects/sundog/sundog.mov";
 import hamprThumbnail from "@/assets/Projects/hampr/thumbnail.png";
+import hamprInput from "@/assets/Projects/hampr/input.png";
+import hamprSpecial from "@/assets/Projects/hampr/special-instructions.png";
+import hamprReview from "@/assets/Projects/hampr/review.png";
+import hamprSummary from "@/assets/Projects/hampr/summary.png";
 import patternloopThumbnail from "@/assets/Projects/patternloop/thumbnail.png";
+import patternloopLeetcodeLight from "@/assets/Projects/patternloop/leetcode-light.png";
+import patternloopInterviewDark from "@/assets/Projects/patternloop/interview-dark.png";
+import patternloopInterviewLight from "@/assets/Projects/patternloop/interview-light.png";
+import patternloopModulesDark from "@/assets/Projects/patternloop/modules-dark.png";
+import patternloopModulesLight from "@/assets/Projects/patternloop/modules-light.png";
 
 type Clip = {
   src: string;
   poster?: string;
+  // "image" clips are screenshots shown in the dialog with a caption
+  kind?: "image";
+  caption?: string;
 };
+
+const isImage = (clip: Clip) => clip.kind === "image";
 
 type Project = {
   title: string;
@@ -107,7 +121,13 @@ const projects: Project[] = [
     category: "automation",
     featured: true,
     thumbnail: hamprThumbnail,
-    videos: [],
+    videos: [
+      { kind: "image", src: hamprInput, caption: "Paste a captured order-detail response and generate labels" },
+      { kind: "image", src: hamprThumbnail, caption: "Print-ready label with allergen icons, rendered from a PSD template" },
+      { kind: "image", src: hamprSpecial, caption: "Special instructions are flagged for review and printed on the label" },
+      { kind: "image", src: hamprReview, caption: "Everything that needs a human glance is listed before printing" },
+      { kind: "image", src: hamprSummary, caption: "Batch summary: quantity per dish across the whole order" },
+    ],
     hasDetail: false,
     slug: "hampr",
   },
@@ -120,7 +140,14 @@ const projects: Project[] = [
     category: "productivity",
     featured: true,
     thumbnail: patternloopThumbnail,
-    videos: [],
+    videos: [
+      { kind: "image", src: patternloopThumbnail, caption: "LeetCode review board (dark mode)" },
+      { kind: "image", src: patternloopLeetcodeLight, caption: "LeetCode review board (light mode)" },
+      { kind: "image", src: patternloopInterviewDark, caption: "Daily interview practice (dark mode)" },
+      { kind: "image", src: patternloopInterviewLight, caption: "Daily interview practice (light mode)" },
+      { kind: "image", src: patternloopModulesDark, caption: "Weekly practice papers per course (dark mode)" },
+      { kind: "image", src: patternloopModulesLight, caption: "Weekly practice papers per course (light mode)" },
+    ],
     hasDetail: false,
     slug: "patternloop",
   },
@@ -177,8 +204,17 @@ const ProjectCard = ({
           <button
             className="absolute bottom-2 right-2 md:bottom-3 md:right-3 bg-primary hover:bg-primary/90 text-black p-2 rounded-full font-bold shadow-xl transition-all transform hover:scale-110 active:scale-95 group-hover:translate-y-0 translate-y-2 opacity-0 group-hover:opacity-100 flex items-center gap-1 z-10"
           >
-             <Play className="fill-black w-3.5 h-3.5 md:w-4 md:h-4" size={16} />
-             <span className="text-[10px] md:text-xs font-bold pr-1">Play Video</span>
+             {project.videos.some((c) => !isImage(c)) ? (
+               <>
+                 <Play className="fill-black w-3.5 h-3.5 md:w-4 md:h-4" size={16} />
+                 <span className="text-[10px] md:text-xs font-bold pr-1">Play Video</span>
+               </>
+             ) : (
+               <>
+                 <Images className="w-3.5 h-3.5 md:w-4 md:h-4" size={16} />
+                 <span className="text-[10px] md:text-xs font-bold pr-1">View Screenshots</span>
+               </>
+             )}
           </button>
         )}
       </div>
@@ -200,8 +236,14 @@ const ProjectCard = ({
                 idx === previewIndex ? "border-primary ring-1 ring-primary" : "border-white/10 hover:border-white/40"
               }`}
             >
-              <img src={clip.poster ?? project.thumbnail} alt="" className="w-full h-full object-cover opacity-80" />
-              <Play size={10} className="absolute inset-0 m-auto fill-white text-white drop-shadow" />
+              <img
+                src={isImage(clip) ? clip.src : clip.poster ?? project.thumbnail}
+                alt=""
+                className="w-full h-full object-cover opacity-80"
+              />
+              {!isImage(clip) && (
+                <Play size={10} className="absolute inset-0 m-auto fill-white text-white drop-shadow" />
+              )}
             </button>
           ))}
         </div>
@@ -322,8 +364,8 @@ const Projects = () => {
         {/* Video Dialog */}
         <Dialog open={!!selectedProject} onOpenChange={(open) => !open && setSelectedProject(null)}>
           <DialogContent className="sm:max-w-[90vw] md:max-w-4xl p-0 bg-black/95 border-none overflow-hidden flex flex-col items-center justify-center">
-            <DialogTitle className="sr-only">Project Video</DialogTitle>
-            <DialogDescription className="sr-only">Video demonstration of {selectedProject?.title}</DialogDescription>
+            <DialogTitle className="sr-only">Project Media</DialogTitle>
+            <DialogDescription className="sr-only">Screenshots and video demonstrations of {selectedProject?.title}</DialogDescription>
             {selectedProject && selectedProject.videos.length === 0 && (
               <img
                 src={selectedProject.thumbnail}
@@ -333,18 +375,34 @@ const Projects = () => {
             )}
             {selectedProject && selectedProject.videos.length > 0 && (
               <div className="relative w-full max-h-[85vh] flex items-center justify-center group/video overflow-hidden">
-                <video
-                  key={selectedProject.videos[currentVideoIndex].src}
-                  poster={selectedProject.videos[currentVideoIndex].poster}
-                  controls
-                  autoPlay
-                  playsInline
-                  className="max-w-full max-h-[85vh] w-auto h-auto object-contain"
-                >
-                  <source src={selectedProject.videos[currentVideoIndex].src} type="video/quicktime" />
-                  <source src={selectedProject.videos[currentVideoIndex].src} type="video/mp4" />
-                  Your browser does not support the video tag.
-                </video>
+                {isImage(selectedProject.videos[currentVideoIndex]) ? (
+                  <>
+                    <img
+                      key={selectedProject.videos[currentVideoIndex].src}
+                      src={selectedProject.videos[currentVideoIndex].src}
+                      alt={selectedProject.videos[currentVideoIndex].caption ?? selectedProject.title}
+                      className="max-w-full max-h-[85vh] w-auto h-auto object-contain"
+                    />
+                    {selectedProject.videos[currentVideoIndex].caption && (
+                      <p className="absolute bottom-12 left-1/2 -translate-x-1/2 max-w-[90%] rounded-full bg-black/70 px-4 py-1.5 text-center text-xs md:text-sm text-white z-10">
+                        {selectedProject.videos[currentVideoIndex].caption}
+                      </p>
+                    )}
+                  </>
+                ) : (
+                  <video
+                    key={selectedProject.videos[currentVideoIndex].src}
+                    poster={selectedProject.videos[currentVideoIndex].poster}
+                    controls
+                    autoPlay
+                    playsInline
+                    className="max-w-full max-h-[85vh] w-auto h-auto object-contain"
+                  >
+                    <source src={selectedProject.videos[currentVideoIndex].src} type="video/quicktime" />
+                    <source src={selectedProject.videos[currentVideoIndex].src} type="video/mp4" />
+                    Your browser does not support the video tag.
+                  </video>
+                )}
 
                 {/* Navigation Buttons */}
                 {selectedProject.videos.length > 1 && (
