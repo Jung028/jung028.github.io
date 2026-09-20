@@ -27,9 +27,7 @@ import hamprSummary from "@/assets/Projects/hampr/summary.png";
 import patternloopThumbnail from "@/assets/Projects/patternloop/thumbnail.png";
 import patternloopLeetcodeLight from "@/assets/Projects/patternloop/leetcode-light.png";
 import patternloopInterviewDark from "@/assets/Projects/patternloop/interview-dark.png";
-import patternloopInterviewLight from "@/assets/Projects/patternloop/interview-light.png";
 import patternloopModulesDark from "@/assets/Projects/patternloop/modules-dark.png";
-import patternloopModulesLight from "@/assets/Projects/patternloop/modules-light.png";
 
 type Clip = {
   src: string;
@@ -143,10 +141,8 @@ const projects: Project[] = [
     videos: [
       { kind: "image", src: patternloopThumbnail, caption: "LeetCode review board (dark mode)" },
       { kind: "image", src: patternloopLeetcodeLight, caption: "LeetCode review board (light mode)" },
-      { kind: "image", src: patternloopInterviewDark, caption: "Daily interview practice (dark mode)" },
-      { kind: "image", src: patternloopInterviewLight, caption: "Daily interview practice (light mode)" },
-      { kind: "image", src: patternloopModulesDark, caption: "Weekly practice papers per course (dark mode)" },
-      { kind: "image", src: patternloopModulesLight, caption: "Weekly practice papers per course (light mode)" },
+      { kind: "image", src: patternloopInterviewDark, caption: "Daily interview practice" },
+      { kind: "image", src: patternloopModulesDark, caption: "Weekly practice papers per course" },
     ],
     hasDetail: false,
     slug: "patternloop",
