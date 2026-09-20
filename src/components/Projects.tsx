@@ -19,6 +19,8 @@ import gatekeepVideo from "@/assets/Projects/gatekeep/gatekeep.mp4";
 import tracelyThumbnail from "@/assets/Projects/tracely/thumbnail.png";
 import sundogThumbnail from "@/assets/Projects/sundog/thumbnail.png";
 import sundogVideo from "@/assets/Projects/sundog/sundog.mov";
+import hamprThumbnail from "@/assets/Projects/hampr/thumbnail.png";
+import patternloopThumbnail from "@/assets/Projects/patternloop/thumbnail.png";
 
 type Clip = {
   src: string;
@@ -96,9 +98,35 @@ const projects: Project[] = [
     hasDetail: false,
     slug: "sundog",
   },
+  {
+    title: "Hampr - Automated Label Generation",
+    description: "Client project for Ipoh Town: a label-generation engine that renders print-ready labels straight from captured order data, cutting label prep from 30 minutes to 2 per batch (93% reduction). Replaces a Photoshop ExtendScript dependency with a pure-Python PSD renderer that locates text layers by position, not name.",
+    tags: ["Python", "Flask", "PSD Rendering", "Pillow", "Automation"],
+    github: "https://github.com/Jung028",
+    live: "#",
+    category: "automation",
+    featured: true,
+    thumbnail: hamprThumbnail,
+    videos: [],
+    hasDetail: false,
+    slug: "hampr",
+  },
+  {
+    title: "PatternLoop - Spaced-Repetition Study System",
+    description: "Daily study board that merges algorithm practice, coursework, and interview prep into one \"everything due today\" view. Uses a 1/3/7/14/30-day scheduling ladder shared by server and client, an automated exam-paper pipeline, and a userscript that captures solutions straight from LeetCode's editor.",
+    tags: ["TypeScript", "Bun", "React 19", "SQLite"],
+    github: "https://github.com/Jung028/leetcode-spaced-repetition-tool",
+    live: "#",
+    category: "productivity",
+    featured: true,
+    thumbnail: patternloopThumbnail,
+    videos: [],
+    hasDetail: false,
+    slug: "patternloop",
+  },
 ];
 
-const categories = ["all", "fintech", "hackathon", "aiops", "robotics"];
+const categories = ["all", "fintech", "hackathon", "aiops", "robotics", "automation", "productivity"];
 
 const categoryLabels: Record<string, string> = {
   all: "All",
@@ -106,6 +134,8 @@ const categoryLabels: Record<string, string> = {
   hackathon: "Hackathon",
   aiops: "AIOPS",
   robotics: "Robotics",
+  automation: "Automation",
+  productivity: "Productivity",
 };
 
 const getGithubLabel = (url: string) => {
